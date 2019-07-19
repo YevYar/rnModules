@@ -18,6 +18,14 @@ export default class ServerApiService {
     return this.instance;
   }
 
+  static fetchProducts() {
+    return this.instance.get('products/');
+  }
+
+  static login(username: string, password: string) {
+    return this.instance.post('login/', { username, password });
+  }
+
   /**
    * This function updates the header for server requests.
    * It only adds Authorization header now.
@@ -25,6 +33,8 @@ export default class ServerApiService {
   static updateHeaders(token: string) {
     if (token === '') {
       ServerApiService.instance.defaults.headers.Authorization = '';
-    } else { ServerApiService.instance.defaults.headers.Authorization = `Token ${token}`; }
+    } else {
+      ServerApiService.instance.defaults.headers.Authorization = `Token ${token}`;
+    }
   }
 }
