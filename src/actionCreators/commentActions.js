@@ -5,17 +5,23 @@
  * @flow
  */
 
-import {
-  CHANGE_COMMENT_INPUT_VISIBILITY,
-  FETCH_PRODUCT_COMMENTS_FAIL,
-  FETCH_PRODUCT_COMMENTS_SUCCESS,
-  POST_COMMENT_FAIL,
-  POST_COMMENT_SUCCESS,
-  SET_COMMENTS_NOT_LOADED,
-} from './types';
+export const CHANGE_COMMENT_INPUT_VISIBILITY =
+  'CHANGE_COMMENT_INPUT_VISIBILITY';
+export const FETCH_PRODUCT_COMMENTS_FAIL = 'FETCH_PRODUCT_COMMENTS_FAIL';
+export const FETCH_PRODUCT_COMMENTS_REQUESTED =
+  'FETCH_PRODUCT_COMMENTS_REQUESTED';
+export const FETCH_PRODUCT_COMMENTS_SUCCESS = 'FETCH_PRODUCT_COMMENTS_SUCCESS';
+export const POST_COMMENT_FAIL = 'POST_COMMENT_FAIL';
+export const POST_COMMENT_REQUESTED = 'POST_COMMENT_REQUESTED';
+export const POST_COMMENT_SUCCESS = 'POST_COMMENT_SUCCESS';
+export const SET_COMMENTS_NOT_LOADED = 'SET_COMMENTS_NOT_LOADED';
 
 export function changeCommentInputVisibility(isVisible: boolean) {
   return { type: CHANGE_COMMENT_INPUT_VISIBILITY, isVisible };
+}
+
+export function fetchProductComments(id: number) {
+  return { type: FETCH_PRODUCT_COMMENTS_REQUESTED, id };
 }
 
 export function fetchProductCommentsFail() {
@@ -30,6 +36,19 @@ export function fetchProductCommentsSuccess(
     type: FETCH_PRODUCT_COMMENTS_SUCCESS,
     id,
     comments,
+  };
+}
+
+export function postComment(
+  comment: string,
+  productId: number,
+  rating: number,
+) {
+  return {
+    type: POST_COMMENT_REQUESTED,
+    comment,
+    productId,
+    rating,
   };
 }
 

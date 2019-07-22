@@ -8,7 +8,7 @@
 import { connect } from 'react-redux';
 
 import AccountButton from '../components/components/AccountButton';
-import { logout } from '../middlewares/UserAccountMiddleware/logoutMiddleware';
+import { logout } from '../actionCreators/UserAccountActions/logoutActions';
 
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.userState.appState.isLogged,
@@ -16,9 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
   username: state.userState.domainData.username,
 });
 
-const mapDispatchToProps = {
-  logout,
-};
+const mapDispatchToProps = { logout };
 
 export default connect(
   mapStateToProps,

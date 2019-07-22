@@ -8,7 +8,17 @@
  * @flow
  */
 
-import { LOGIN_FAIL, LOGIN_SUCCESS } from '../types';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_REQUESTED = 'LOGIN_REQUESTED';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export function login(username: string, password: string) {
+  return {
+    type: LOGIN_REQUESTED,
+    username,
+    password,
+  };
+}
 
 export function loginFail() {
   return { type: LOGIN_FAIL };

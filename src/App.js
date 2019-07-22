@@ -14,7 +14,7 @@ import { Provider, connect } from 'react-redux';
 import MainNavigator from './navigation/MainNavigator';
 import NavigationService from './services/NavigationService';
 import { fetchProducts } from './actionCreators/catalogueActions';
-// import { restoreSession } from './middlewares/SessionStoreMiddleware/restoreSessionMiddleware';
+// import { restoreSession } from './actionCreators/SessionStoreActions/restoreSessionActions';
 import store from './store';
 
 const Navigation = createAppContainer(MainNavigator);

@@ -8,10 +8,10 @@
 import { connect } from 'react-redux';
 
 import AboutProductScreen from '../components/screens/AboutProductScreen';
-import { fetchProductComments } from '../middlewares/commentMiddleware';
+import { fetchProductComments } from '../actionCreators/commentActions';
 
 const mapStateToProps = (state, ownProps) => {
-  const data = state.catalogueState.domainData.products.find(x => x.id === state.catalogueState.appState.selectedProduct);
+  const data = state.catalogueState.domainData.products.find(x => x.id === state.catalogueState.appState.selectedProduct,);
   return {
     goTo: () => ownProps.navigation.navigate('Comments'),
     id: state.catalogueState.appState.selectedProduct,

@@ -18,12 +18,30 @@ export default class ServerApiService {
     return this.instance;
   }
 
+  static fetchProductComments(id: number) {
+    return ServerApiService.instance.get(`reviews/${id}`);
+  }
+
   static fetchProducts() {
-    return this.instance.get('products/');
+    return ServerApiService.instance.get('products/');
   }
 
   static login(username: string, password: string) {
-    return this.instance.post('login/', { username, password });
+    return ServerApiService.instance.post('login/', { username, password });
+  }
+
+  static postComment(comment, productId, rating) {
+    return ServerApiService.instance.post(`reviews/${productId}`, {
+      rate: rating,
+      text: comment,
+    });
+  }
+
+  static register(username: string, password: string) {
+    return ServerApiService.instance.post('register/', {
+      username,
+      password,
+    });
   }
 
   /**

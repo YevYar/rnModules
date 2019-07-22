@@ -6,19 +6,14 @@
  */
 
 import { applyMiddleware, createStore } from 'redux';
-
-// import rootMiddleware from './middlewares/rootMiddleware';
-import rootReducer from './reducers/rootReducer';
-
-import watchFetchProducts from './middlewares/catalogueMiddleware';
-
 import createSagaMiddleware from 'redux-saga';
+
+import rootReducer from './reducers/rootReducer';
+import rootSaga from './middlewares/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watchFetchProducts);
-
-// rootMiddleware.run(watchFetchProducts);
+sagaMiddleware.run(rootSaga);
 
 export default store;

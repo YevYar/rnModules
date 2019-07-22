@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
   startLine: {
     borderBottomColor: mainDark,
     borderBottomWidth: 1,
+    marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
   },

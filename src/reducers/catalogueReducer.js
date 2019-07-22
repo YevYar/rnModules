@@ -10,7 +10,7 @@ import {
   FETCH_PRODUCTS_FAIL,
   FETCH_PRODUCTS_SUCCESS,
   OPEN_PRODUCT_INFO,
-} from '../actionCreators/types';
+} from '../actionCreators/catalogueActions';
 
 export default function catalogueReducer(state: Object, action: Object) {
   switch (action.type) {

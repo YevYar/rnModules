@@ -5,19 +5,38 @@
  * @flow
  */
 
+import { call, put } from 'redux-saga/effects';
+
 import ServerApiService from '../../services/ServerApiService';
 import {
   logoutFail,
   logoutSuccess,
 } from '../../actionCreators/UserAccountActions/logoutActions';
-import { removeUserAccountData } from '../SessionStoreMiddleware/accountStoreMiddleware';
-import showErrorMessage from '../showErrorMessage';
+import { removeUserAccountData } from '../../services/SecureStore';
+import showErrorMessage from '../../utils/showErrorMessage';
 
 const LOGOUT_ERROR_MESSAGE = "We can't log out.";
-const { updateHeaders } = ServerApiService;
 
-export function logout() {
-  return (dispatch: Function) => {
+export function* onLogout() {
+  try {
+    yield call(removeUserAccountData, 'Token'); // ('Token');
+    yield call(removeUserAccountData, 'Username'); // ('Username');
+    ServerApiService.updateHeaders('');
+    yield put(logoutSuccess());
+  } catch (err) {
+    console.log(err);
+    showErrorMessage(LOGOUT_ERROR_MESSAGE);
+    yield put(logoutFail());
+  }
+  /* const tokenRemover =
+  tokenRemover.then();
+  tokenRemover.catch((err) => {
+    console.log(err);
+    showErrorMessage(LOGOUT_ERROR_MESSAGE);
+    yield put(logoutFail());
+  }); */
+
+  /* return (dispatch: Function) => {
     removeUserAccountData(
       'Token',
       () => removeUserAccountData(
@@ -38,5 +57,5 @@ export function logout() {
         dispatch(logoutFail());
       },
     );
-  };
+  }; */
 }

@@ -8,44 +8,68 @@
  * @flow
  */
 
+import { call, put } from 'redux-saga/effects';
+
 import {
   registerFail,
   registerSuccess,
 } from '../../actionCreators/UserAccountActions/registrationActions';
 import NavigationService from '../../services/NavigationService';
-import { saveUserAccountData } from '../SessionStoreMiddleware/accountStoreMiddleware';
-import showErrorMessage from '../showErrorMessage';
 import ServerApiService from '../../services/ServerApiService';
+import { saveUserAccountData } from '../../services/SecureStore';
+import showErrorMessage from '../../utils/showErrorMessage';
 
 const USERNAME_EXISTED_MESSAGE = 'User with this username has already existed.';
 const REGISTER_FAIL_MESSAGE =
   "Something has gone wrong. We can't register you.";
-const apiClient = ServerApiService.getApiService();
-const { updateHeaders } = ServerApiService;
 
-export function register(username: string, password: string) {
-  return (dispatch: Function) => apiClient
-    .post('register/', { username, password })
-    .then((response) => {
-      if (response.data.success === true) {
-        // NavigationService.navigate("Home");
-        NavigationService.goBack();
-        NavigationService.goBack();
+export function* onRegister(action) {
+  const { password, username } = action;
+  try {
+    const response = yield call(ServerApiService.register, username, password);
+    if (response.data.success === true) {
+      // NavigationService.navigate("Home");
+      NavigationService.goBack();
+      NavigationService.goBack();
 
-        const { token } = response.data;
+      const { token } = response.data;
 
-        saveUserAccountData(token, username);
-        updateHeaders(token);
-        dispatch(registerSuccess(token, username));
-      } else {
-        showErrorMessage(USERNAME_EXISTED_MESSAGE);
+      yield call(saveUserAccountData, token, username);
+      ServerApiService.updateHeaders(token);
+      yield put(registerSuccess(token, username));
+    } else {
+      showErrorMessage(USERNAME_EXISTED_MESSAGE);
+      yield put(registerFail());
+    }
+  } catch (error) {
+    console.log(`register: ${error}`);
+    showErrorMessage(REGISTER_FAIL_MESSAGE);
+    yield put(registerFail());
+    // throw error;
+  }
+  /* return (dispatch: Function) =>
+    apiClient
+      .post('register/', { username, password })
+      .then((response) => {
+        if (response.data.success === true) {
+          // NavigationService.navigate("Home");
+          NavigationService.goBack();
+          NavigationService.goBack();
+
+          const { token } = response.data;
+
+          saveUserAccountData(token, username);
+          updateHeaders(token);
+          dispatch(registerSuccess(token, username));
+        } else {
+          showErrorMessage(USERNAME_EXISTED_MESSAGE);
+          dispatch(registerFail());
+        }
+      })
+      .catch((error) => {
+        console.log(`register: ${error}`);
+        showErrorMessage(REGISTER_FAIL_MESSAGE);
         dispatch(registerFail());
-      }
-    })
-    .catch((error) => {
-      console.log(`register: ${error}`);
-      showErrorMessage(REGISTER_FAIL_MESSAGE);
-      dispatch(registerFail());
-      // throw error;
-    });
+        // throw error;
+      }); */
 }

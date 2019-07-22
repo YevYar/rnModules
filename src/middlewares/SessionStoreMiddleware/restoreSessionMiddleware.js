@@ -9,9 +9,10 @@
  * @flow
  */
 
-// import RNSecureKeyStore from "react-native-secure-key-store";
+import { call, put } from 'redux-saga/effects';
 
 import ServerApiService from '../../services/ServerApiService';
+import { getUserAccountData } from '../../services/SecureStore';
 import {
   restoreSessionFail,
   restoreSessionSuccess,
@@ -19,39 +20,23 @@ import {
 
 const { updateHeaders } = ServerApiService;
 
-export function restoreSession(...callbacks: Array<Function>) {
-  /** **************************************************************************
-   * RNSecureKeyStore.get(key) gets an account data from an encrypted storage *
-   *************************************************************************** */
-  return (dispatch: Function) => {
-    dispatch(restoreSessionSuccess('', '' /* token, res */));
-    callbacks.forEach(item => dispatch(item()));
-    /* return RNSecureKeyStore.get("Token").then(
-      res => {
-        const token = res;
+export function* onRestoreSession(...callbacks: Array<Function>) {
+  try {
+    const token = yield call(getUserAccountData, 'Token');
+    const username = yield call(getUserAccountData, 'Username');
 
-        return RNSecureKeyStore.get("Username").then(
-          res => {
-            if (token.length !== 0 && res.length !== 0) {
-              updateHeaders(token);
-              dispatch(restoreSessionSuccess(token, res));
-              callbacks.forEach(item => dispatch(item())); // dispatch(callback());
-            } else dispatch(restoreSessionFail());
-          },
-          err => {
-            console.log("get username err: ");
-            console.log(err);
-            dispatch(restoreSessionFail());
-            callbacks.forEach(item => dispatch(item())); // dispatch(callback());
-          }
-        );
-      },
-      err => {
-        console.log("get token err: ");
-        console.log(err);
-        dispatch(restoreSessionFail());
-        callbacks.forEach(item => dispatch(item())); // dispatch(callback());
+    if (token.length !== 0 && username.length !== 0) {
+      updateHeaders(token);
+      yield put(restoreSessionSuccess(token, username));
+      for (const item of callbacks) {
+        yield put(item());
       }
-    ); */
-  };
+    } else throw new Error('Username or token restore error');
+  } catch (error) {
+    console.log(error);
+    yield put(restoreSessionFail());
+    for (const item of callbacks) {
+      yield put(item());
+    }
+  }
 }

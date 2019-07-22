@@ -8,7 +8,13 @@
  * @flow
  */
 
-import { RESTORE_SESSION_FAIL, RESTORE_SESSION_SUCCESS } from '../types';
+export const RESTORE_SESSION_FAIL = 'RESTORE_SESSION_FAIL';
+export const RESTORE_SESSION_REQUESTED = 'RESTORE_SESSION_REQUESTED';
+export const RESTORE_SESSION_SUCCESS = 'RESTORE_SESSION_SUCCESS';
+
+export function restoreSession() {
+  return { type: RESTORE_SESSION_REQUESTED };
+}
 
 export function restoreSessionFail() {
   return { type: RESTORE_SESSION_FAIL };

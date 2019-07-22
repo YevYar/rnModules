@@ -11,28 +11,29 @@
 import { call, put } from 'redux-saga/effects';
 
 import NavigationService from '../../services/NavigationService';
-import { login, updateHeaders } from '../../services/ServerApiService';
+import ServerApiService from '../../services/ServerApiService';
 import {
   loginFail,
   loginSuccess,
 } from '../../actionCreators/UserAccountActions/authorizationActions';
-import { saveUserAccountData } from '../SessionStoreMiddleware/accountStoreMiddleware';
-import showErrorMessage from '../showErrorMessage';
+import { saveUserAccountData } from '../../services/SecureStore';
+import showErrorMessage from '../../utils/showErrorMessage';
 
 const INVALID_DATA_MESSAGE = 'Invalid entered data.';
 const LOGIN_FAIL_MESSAGE = "Something has gone wrong. We can't login.";
 
-export function* onLogin(username: string, password: string) {
+export function* onLogin(action) {
+  const { username, password } = action;
   try {
-    const response = yield call(login, username, password);
+    const response = yield call(ServerApiService.login, username, password);
     if (response.data.success === true) {
       // NavigationService.navigate("Home");
       NavigationService.goBack();
 
       const { token } = response.data;
 
-      saveUserAccountData(token, username);
-      updateHeaders(token);
+      yield call(saveUserAccountData, token, username);
+      ServerApiService.updateHeaders(token);
       yield put(loginSuccess(token, username));
     } else {
       showErrorMessage(INVALID_DATA_MESSAGE);

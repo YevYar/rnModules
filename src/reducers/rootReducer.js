@@ -5,7 +5,7 @@
  * @flow
  */
 
-import { POST_COMMENT_SUCCESS } from '../actionCreators/types';
+import { POST_COMMENT_SUCCESS } from '../actionCreators/commentActions';
 import catalogueReducer from './catalogueReducer';
 import commentReducer from './commentReducer';
 import userReducer from './userReducer/userReducer';
@@ -34,8 +34,8 @@ export default function rootReducer(
       uiState: { isCommentInputVisible: false },
     },
     userState: {
-      appState: { isLogged: true },
-      domainData: { token: 'Iva', username: 'Iva' },
+      appState: { isLogged: false },
+      domainData: { token: '', username: '' },
     },
   },
   action: Object,

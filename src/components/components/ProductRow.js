@@ -104,9 +104,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   imageBlock: {
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    overflow: 'hidden',
+    padding: 0,
   },
   wrapper: {
     marginBottom: 5,

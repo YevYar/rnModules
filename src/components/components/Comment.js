@@ -33,7 +33,6 @@ export default function Comment(props: Props) {
     hour: 'numeric',
     hour12: false,
     minute: 'numeric',
-    second: 'numeric',
   };
   date = date.toLocaleString('en-UK', options);
 

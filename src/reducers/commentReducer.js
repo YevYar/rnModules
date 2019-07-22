@@ -12,7 +12,7 @@ import {
   FETCH_PRODUCT_COMMENTS_SUCCESS,
   POST_COMMENT_SUCCESS,
   SET_COMMENTS_NOT_LOADED,
-} from '../actionCreators/types';
+} from '../actionCreators/commentActions';
 
 export default function commentReducer(state: Object, action: Object) {
   switch (action.type) {

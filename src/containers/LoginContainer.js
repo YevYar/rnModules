@@ -8,7 +8,7 @@
 import { connect } from 'react-redux';
 
 import LoginScreen from '../components/screens/LoginScreen';
-import { login } from '../middlewares/UserAccountMiddleware/authorizationMiddleware';
+import { login } from '../actionCreators/UserAccountActions/authorizationActions';
 
 const mapStateToProps = (state, ownProps) => ({
   goTo: () => ownProps.navigation.navigate('Registration'),
