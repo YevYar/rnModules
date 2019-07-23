@@ -10,6 +10,7 @@ import {
   Alert,
   FlatList,
   Image,
+  RefreshControl,
   StyleSheet,
   TouchableHighlight,
   View,
@@ -25,6 +26,7 @@ import { mainLight, screenBackground } from '../../constants/colors';
 type Props = {
   changeCommentInputVisibility: Function,
   comments: Array<Object>,
+  fetchProductComments: Function,
   isCommentInputVisible: boolean,
   isCommentsLoadedWithoutErrors: boolean,
   isCommentsLoadingFinished: boolean,
@@ -65,6 +67,14 @@ export default class CommentsScreen extends Component<Props, States> {
           <FlatList
             data={comments}
             keyExtractor={item => item.id.toString()}
+            refreshControl={
+              <RefreshControl
+                refreshing={!this.props.isCommentsLoadingFinished}
+                onRefresh={() =>
+                  this.props.fetchProductComments(this.props.productId)
+                }
+              />
+            }
             renderItem={({ item }) => (
               <Comment
                 dateTime={item.created_at}

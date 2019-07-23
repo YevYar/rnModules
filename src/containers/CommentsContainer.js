@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import CommentsScreen from '../components/screens/CommentsScreen';
 import {
   changeCommentInputVisibility,
+  fetchProductComments,
   postComment,
 } from '../actionCreators/commentActions';
 
@@ -30,6 +31,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   changeCommentInputVisibility,
+  fetchProductComments,
   postComment,
 };
 
