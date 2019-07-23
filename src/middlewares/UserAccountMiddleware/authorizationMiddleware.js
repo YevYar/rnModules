@@ -21,6 +21,8 @@ import showErrorMessage from '../../utils/showErrorMessage';
 
 const INVALID_DATA_MESSAGE = 'Invalid entered data.';
 const LOGIN_FAIL_MESSAGE = "Something has gone wrong. We can't login.";
+const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
+  "We can't save account data for session recovery.";
 
 export function* onLogin(action) {
   const { username, password } = action;
@@ -32,7 +34,14 @@ export function* onLogin(action) {
 
       const { token } = response.data;
 
-      yield call(saveUserAccountData, token, username);
+      try {
+        yield call(saveUserAccountData, 'Token', token);
+        yield call(saveUserAccountData, 'Username', username);
+      } catch (error) {
+        console.log(error);
+        showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
+      }
+
       ServerApiService.updateHeaders(token);
       yield put(loginSuccess(token, username));
     } else {

@@ -20,10 +20,23 @@ import {
 
 const { updateHeaders } = ServerApiService;
 
-export function* onRestoreSession(...callbacks: Array<Function>) {
+export function* onRestoreSession(action) {
+  const { callbacks } = action;
+
   try {
-    const token = yield call(getUserAccountData, 'Token');
-    const username = yield call(getUserAccountData, 'Username');
+    let token;
+    let username;
+    try {
+      token = yield call(getUserAccountData, 'Token');
+      username = yield call(getUserAccountData, 'Username');
+    } catch (error) {
+      console.log(error);
+      yield put(restoreSessionFail());
+      for (const item of callbacks) {
+        yield put(item());
+      }
+      return;
+    }
 
     if (token.length !== 0 && username.length !== 0) {
       updateHeaders(token);

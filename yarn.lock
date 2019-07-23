@@ -6735,6 +6735,11 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
+rn-secure-storage@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/rn-secure-storage/-/rn-secure-storage-1.1.1.tgz#42bd4ddb1aca6f897e7d96b0882eaf8a71cd5c5c"
+  integrity sha512-8+pG1sBtTIcQWbMb4b9rpC3GvI/4wfRVPdRQMhCjhgHQyKoeAmmQHjJL36OysSN/msJDFfRU69EcoZot9Ubr2w==
+
 rnpm-plugin-install@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/rnpm-plugin-install/-/rnpm-plugin-install-1.1.0.tgz#5a46cabf2c523e59a6006337c96f46c4f2bfaf69"

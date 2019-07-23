@@ -22,6 +22,8 @@ import showErrorMessage from '../../utils/showErrorMessage';
 const USERNAME_EXISTED_MESSAGE = 'User with this username has already existed.';
 const REGISTER_FAIL_MESSAGE =
   "Something has gone wrong. We can't register you.";
+const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
+  "We can't save account data for session recovery.";
 
 export function* onRegister(action) {
   const { password, username } = action;
@@ -34,7 +36,14 @@ export function* onRegister(action) {
 
       const { token } = response.data;
 
-      yield call(saveUserAccountData, token, username);
+      try {
+        yield call(saveUserAccountData, 'Token', token);
+        yield call(saveUserAccountData, 'Username', username);
+      } catch (error) {
+        console.log(error);
+        showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
+      }
+
       ServerApiService.updateHeaders(token);
       yield put(registerSuccess(token, username));
     } else {

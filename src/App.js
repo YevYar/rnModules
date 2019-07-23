@@ -14,12 +14,12 @@ import { Provider, connect } from 'react-redux';
 import MainNavigator from './navigation/MainNavigator';
 import NavigationService from './services/NavigationService';
 import { fetchProducts } from './actionCreators/catalogueActions';
-// import { restoreSession } from './actionCreators/SessionStoreActions/restoreSessionActions';
+import { restoreSession } from './actionCreators/SessionStoreActions/restoreSessionActions';
 import store from './store';
 
 const Navigation = createAppContainer(MainNavigator);
 
-type Props = { fetchProducts: Function /* , restoreSession: Function */ };
+type Props = { fetchProducts: Function, restoreSession: Function };
 type States = {};
 class App extends Component<Props, States> {
   componentDidMount() {
@@ -27,8 +27,8 @@ class App extends Component<Props, States> {
      * Api requests have to contain token header if an user logged in in the last session.*
      * So app have to fetch products only after restoreSession will be executed.          *
      ************************************************************************************ */
-    // this.props.restoreSession(() => fetchProducts());
-    this.props.fetchProducts();
+    this.props.restoreSession(fetchProducts);
+    // this.props.fetchProducts();
   }
 
   render() {
@@ -46,7 +46,7 @@ class App extends Component<Props, States> {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = { fetchProducts /* , restoreSession */ };
+const mapDispatchToProps = { fetchProducts, restoreSession };
 
 const ConnectedApp = connect(
   mapStateToProps,
