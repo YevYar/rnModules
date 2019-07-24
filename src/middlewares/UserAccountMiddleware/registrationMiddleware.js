@@ -40,7 +40,7 @@ export function* onRegister(action) {
         yield call(saveUserAccountData, 'Token', token);
         yield call(saveUserAccountData, 'Username', username);
       } catch (error) {
-        console.log(error);
+        console.log(`onRegister: ${error}`);
         showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
@@ -51,34 +51,9 @@ export function* onRegister(action) {
       yield put(registerFail());
     }
   } catch (error) {
-    console.log(`register: ${error}`);
+    console.log(`onRegister: ${error}`);
     showErrorMessage(REGISTER_FAIL_MESSAGE);
     yield put(registerFail());
     // throw error;
   }
-  /* return (dispatch: Function) =>
-    apiClient
-      .post('register/', { username, password })
-      .then((response) => {
-        if (response.data.success === true) {
-          // NavigationService.navigate("Home");
-          NavigationService.goBack();
-          NavigationService.goBack();
-
-          const { token } = response.data;
-
-          saveUserAccountData(token, username);
-          updateHeaders(token);
-          dispatch(registerSuccess(token, username));
-        } else {
-          showErrorMessage(USERNAME_EXISTED_MESSAGE);
-          dispatch(registerFail());
-        }
-      })
-      .catch((error) => {
-        console.log(`register: ${error}`);
-        showErrorMessage(REGISTER_FAIL_MESSAGE);
-        dispatch(registerFail());
-        // throw error;
-      }); */
 }

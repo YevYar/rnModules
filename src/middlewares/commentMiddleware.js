@@ -47,32 +47,6 @@ export function* onFetchProductComments(action) {
     yield put(fetchProductCommentsFail());
     // throw error;
   }
-
-  /* return (dispatch: Function) => {
-    dispatch(setCommentsLoadedToFalse());
-    return apiClient
-      .get(`reviews/${id}`)
-      .then((response) => {
-        /** *******************************************************
-         * sort product comments by date (the newest in the top) *
-         ******************************************************** */
-  /* if (response.data) {
-          response.data.sort((a, b) => {
-            const aD = new Date(a.created_at);
-            const bD = new Date(b.created_at);
-            return aD > bD ? -1 : bD > aD ? 1 : 0;
-          });
-        } else response.data = [];
-
-        dispatch(fetchProductCommentsSuccess(id, response.data));
-      })
-      .catch((error) => {
-        console.log(`fetchProductComments error: ${error}`);
-        showErrorMessage(FETCH_COMMENTS_FAIL_MESSAGE);
-        dispatch(fetchProductCommentsFail());
-        // throw error;
-      });
-  }; */
 }
 
 export function* onPostComment(action) {
@@ -101,28 +75,4 @@ export function* onPostComment(action) {
     showErrorMessage(POST_COMMENT_FAIL_MESSAGE);
     yield put(postCommentFail());
   }
-  /*
-  return (dispatch: Function) =>
-    apiClient
-      .post(`reviews/${productId}`, { rate: rating, text: comment })
-      .then((response) => {
-        if (response.data.success === true) {
-          const newComment = {
-            created_at: new Date().toString(),
-            created_by: {},
-            rate: rating,
-            text: comment,
-          };
-          dispatch(postCommentSuccess(newComment));
-        } else {
-          showErrorMessage(POST_COMMENT_FAIL_MESSAGE);
-          dispatch(postCommentFail());
-        }
-      })
-      .catch((error) => {
-        console.log(`postComment error: ${error}`);
-        showErrorMessage(POST_COMMENT_FAIL_MESSAGE);
-        dispatch(postCommentFail());
-        // throw error;
-      }); */
 }

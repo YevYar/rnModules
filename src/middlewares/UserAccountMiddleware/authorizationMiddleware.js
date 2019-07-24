@@ -38,7 +38,7 @@ export function* onLogin(action) {
         yield call(saveUserAccountData, 'Token', token);
         yield call(saveUserAccountData, 'Username', username);
       } catch (error) {
-        console.log(error);
+        console.log(`onLogin: ${error}`);
         showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
@@ -49,31 +49,9 @@ export function* onLogin(action) {
       yield put(loginFail());
     }
   } catch (error) {
-    console.log(`login: ${error}`);
+    console.log(`onLogin: ${error}`);
     showErrorMessage(LOGIN_FAIL_MESSAGE);
     yield put(loginFail());
     // throw error;
   }
-  /*
-  yield login(username, password).then((response) => {
-      if (response.data.success === true) {
-        // NavigationService.navigate("Home");
-        NavigationService.goBack();
-
-        const { token } = response.data;
-
-        saveUserAccountData(token, username);
-        updateHeaders(token);
-        dispatch(loginSuccess(token, username));
-      } else {
-        showErrorMessage(INVALID_DATA_MESSAGE);
-        dispatch(loginFail());
-      }
-    })
-    .catch((error) => {
-      console.log(`login: ${error}`);
-      showErrorMessage(LOGIN_FAIL_MESSAGE);
-      dispatch(loginFail());
-      // throw error;
-    }); */
 }

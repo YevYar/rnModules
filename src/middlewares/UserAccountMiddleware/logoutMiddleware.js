@@ -23,39 +23,9 @@ export function* onLogout() {
     yield call(removeUserAccountData, 'Username'); // ('Username');
     ServerApiService.updateHeaders('');
     yield put(logoutSuccess());
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(`onLogout: ${error}`);
     showErrorMessage(LOGOUT_ERROR_MESSAGE);
     yield put(logoutFail());
   }
-  /* const tokenRemover =
-  tokenRemover.then();
-  tokenRemover.catch((err) => {
-    console.log(err);
-    showErrorMessage(LOGOUT_ERROR_MESSAGE);
-    yield put(logoutFail());
-  }); */
-
-  /* return (dispatch: Function) => {
-    removeUserAccountData(
-      'Token',
-      () => removeUserAccountData(
-        'Username',
-        () => {
-          updateHeaders('');
-          dispatch(logoutSuccess());
-        },
-        (err) => {
-          console.log(err);
-          showErrorMessage(LOGOUT_ERROR_MESSAGE);
-          dispatch(logoutFail());
-        },
-      ),
-      (err) => {
-        console.log(err);
-        showErrorMessage(LOGOUT_ERROR_MESSAGE);
-        dispatch(logoutFail());
-      },
-    );
-  }; */
 }

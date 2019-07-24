@@ -30,7 +30,7 @@ export function* onRestoreSession(action) {
       token = yield call(getUserAccountData, 'Token');
       username = yield call(getUserAccountData, 'Username');
     } catch (error) {
-      console.log(error);
+      console.log(`onRestoreSession: ${error}`);
       yield put(restoreSessionFail());
       for (const item of callbacks) {
         yield put(item());
@@ -46,7 +46,7 @@ export function* onRestoreSession(action) {
       }
     } else throw new Error('Username or token restore error');
   } catch (error) {
-    console.log(error);
+    console.log(`onRestoreSession: ${error}`);
     yield put(restoreSessionFail());
     for (const item of callbacks) {
       yield put(item());
