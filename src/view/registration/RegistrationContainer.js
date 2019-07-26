@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 import RegistrationScreen from './RegistrationScreen';
 
-const equalTo = (ref, msg) =>
+function equalTo(ref, msg) {
   this.test({
     name: 'equalTo',
     exclusive: false,
@@ -21,6 +21,7 @@ const equalTo = (ref, msg) =>
       return value === this.resolve(ref);
     },
   });
+}
 yup.addMethod(yup.string, 'equalTo', equalTo);
 
 const validationSchema = yup.object().shape({
