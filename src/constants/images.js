@@ -2,7 +2,6 @@
  * This module contains paths to all icons.
  *
  * @format
- * @flow
  */
 /* global require */
 

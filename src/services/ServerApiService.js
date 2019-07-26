@@ -2,7 +2,6 @@
  * This service contains the axios api client for connecting to the server.
  *
  * @format
- * @flow
  */
 
 import axios from 'axios';
@@ -18,7 +17,7 @@ export default class ServerApiService {
     return this.instance;
   }
 
-  static fetchProductComments(id: number) {
+  static fetchProductComments(id) {
     return ServerApiService.instance.get(`reviews/${id}`);
   }
 
@@ -26,7 +25,7 @@ export default class ServerApiService {
     return ServerApiService.instance.get('products/');
   }
 
-  static login(username: string, password: string) {
+  static login(username, password) {
     return ServerApiService.instance.post('login/', { username, password });
   }
 
@@ -37,7 +36,7 @@ export default class ServerApiService {
     });
   }
 
-  static register(username: string, password: string) {
+  static register(username, password) {
     return ServerApiService.instance.post('register/', {
       username,
       password,
@@ -48,7 +47,7 @@ export default class ServerApiService {
    * This function updates the header for server requests.
    * It only adds Authorization header now.
    */
-  static updateHeaders(token: string) {
+  static updateHeaders(token) {
     if (token === '') {
       ServerApiService.instance.defaults.headers.Authorization = '';
     } else {

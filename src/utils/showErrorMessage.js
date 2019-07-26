@@ -2,11 +2,10 @@
  * This module contains the error displaying function.
  *
  * @format
- * @flow
  */
 
 import { Alert } from 'react-native';
 
-export default function showErrorMessage(message: string) {
+export default (message) => {
   Alert.alert(message);
-}
+};

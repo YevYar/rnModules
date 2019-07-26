@@ -2,47 +2,51 @@
  * This module contains main app navigator (stack navigator).
  *
  * @format
- * @flow
  */
 
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import AboutProductContainer from '../containers/AboutProductContainer';
-import AccountButtonContainer from '../containers/AccountButtonContainer';
-import CommentsContainer from '../containers/CommentsContainer';
-import LoginContainer from '../containers/LoginContainer';
-import ProductsContainer from '../containers/ProductsContainer';
-import RegistrationContainer from '../containers/RegistrationContainer';
+import AboutProductHOC from '../view/aboutProduct/AboutProductHOC';
+import AccountButtonHOC from '../view/accountButton/AccountButtonHOC';
+import CommentsHOC from '../view/comments/CommentsHOC';
+import LoginHOC from '../view/login/LoginHOC';
+import MapHOC from '../view/map/MapHOC';
+import ProductsHOC from '../view/products/ProductsHOC';
+import RegistrationHOC from '../view/registration/RegistrationHOC';
 import { mainDark, navHeaderElementsColor } from '../constants/colors';
 
 export default createStackNavigator(
   {
     Home: {
-      screen: ProductsContainer,
+      screen: ProductsHOC,
       navigationOptions: { title: 'Products' },
     },
     About: {
-      screen: AboutProductContainer,
+      screen: AboutProductHOC,
       navigationOptions: { title: 'About product' },
     },
     Comments: {
-      screen: CommentsContainer,
+      screen: CommentsHOC,
       navigationOptions: { title: 'Comments' },
     },
     Login: {
-      screen: LoginContainer,
+      screen: LoginHOC,
       navigationOptions: { headerRight: null, title: 'Login' },
     },
     Registration: {
-      screen: RegistrationContainer,
+      screen: RegistrationHOC,
       navigationOptions: { headerRight: null, title: 'Registration' },
+    },
+    Map: {
+      screen: MapHOC,
+      navigationOptions: { title: 'Map' },
     },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       headerRight: (
-        <AccountButtonContainer onPress={() => navigation.navigate('Login')} />
+        <AccountButtonHOC onPress={() => navigation.navigate('Login')} />
       ),
       headerStyle: {
         backgroundColor: mainDark,

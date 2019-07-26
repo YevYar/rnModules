@@ -2,7 +2,6 @@
  * This module contains all app colors.
  *
  * @format
- * @flow
  */
 
 /** **********************
