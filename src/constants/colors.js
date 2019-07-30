@@ -4,51 +4,55 @@
  * @format
  */
 
-/** **********************
- * Main app color theme *
- *********************** */
-export const mainDark = '#1E90FF';
-export const mainLight = '#F1C408';
-export const additionalDark = '#00B5EC';
+const colors = {
+  /** **********************
+   * Main app color theme  *
+   *********************** */
+  mainDark: '#1E90FF',
+  mainLight: '#F1C408',
+  additionalDark: '#00B5EC',
 
-/** **************************
- * Screen's background color *
- *************************** */
-export const screenBackground = 'rgba(30, 144, 255, 0.08)';
-export const screenBackground_2 = 'rgba(30, 144, 255, 0.1)';
-export const screenBackground_3 = '#FFF';
+  /** **************************
+   * Screen's background color *
+   *************************** */
+  screenBackground: 'rgba(30, 144, 255, 0.08)',
+  screenBackground_2: 'rgba(30, 144, 255, 0.1)',
+  screenBackground_3: '#FFF',
 
-/** **********************************
- * List elements color.             *
- * Example: catalogue, comment list *
- *********************************** */
-export const listElementBackground = '#FFF';
-export const listElementBorder = '#000';
+  /** **********************************
+   * List elements color.              *
+   * Example: catalogue, comment list  *
+   *********************************** */
+  listElementBackground: '#FFF',
+  listElementBorder: '#000',
 
-/** *************
- * Text colors *
- ************** */
-export const mainTextColor = '#000';
-export const additionalTextColor = '#697078';
-export const mainTextColorOnDarkBG = '#FFF'; // BG - background color
-export const errorTextColor = '#F00';
+  /** *************
+   * Text colors  *
+   ************** */
+  mainTextColor: '#000',
+  additionalTextColor: '#697078',
+  mainTextColorOnDarkBG: '#FFF', // BG - background color
+  errorTextColor: '#F00',
 
-/** **************************
- * Input colors             *
- * Example: reg / auth form *
- *************************** */
-export const inputBackgroundColor = '#FFF';
-export const inputBorderBottomColor = '#F5FCFF';
-export const inputBorderColor = '#FFF';
+  /** **************************
+   * Input colors              *
+   * Example: reg / auth form  *
+   *************************** */
+  inputBackgroundColor: '#FFF',
+  inputBorderBottomColor: '#F5FCFF',
+  inputBorderColor: '#FFF',
 
-/** **********************
- * Comment input colors *
- *********************** */
-export const commentInputBG = 'rgba(110, 170, 200, 0.7)';
-export const commentInputBorder = '#FCD800'; // gold
+  /** **********************
+   * Comment input colors  *
+   *********************** */
+  commentInputBG: 'rgba(110, 170, 200, 0.7)',
+  commentInputBorder: '#FCD800', // gold
 
-/** **************************
- * Navigation header colors *
- *************************** */
-export const navHeaderElementsColor = '#FFF';
-export const accountMenuColor = '#F00';
+  /** **************************
+   * Navigation header colors  *
+   *************************** */
+  navHeaderElementsColor: '#FFF',
+  accountMenuColor: '#F00'
+};
+
+export default colors;

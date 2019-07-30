@@ -8,7 +8,7 @@
 import {
   FETCH_PRODUCTS_FAIL,
   FETCH_PRODUCTS_SUCCESS,
-  OPEN_PRODUCT_INFO,
+  OPEN_PRODUCT_INFO
 } from './catalogueActions';
 
 export default (state, action) => {
@@ -18,8 +18,8 @@ export default (state, action) => {
         ...state,
         appState: {
           ...state.appState,
-          isProductsLoadingFinished: true,
-        },
+          isProductsLoadingFinished: true
+        }
       };
 
     case FETCH_PRODUCTS_SUCCESS:
@@ -27,9 +27,9 @@ export default (state, action) => {
         ...state,
         appState: {
           ...state.appState,
-          isProductsLoadingFinished: true,
+          isProductsLoadingFinished: true
         },
-        domainData: { ...state.domainData, products: action.products },
+        domainData: { ...state.domainData, products: action.products }
       };
 
     case OPEN_PRODUCT_INFO:
@@ -37,8 +37,8 @@ export default (state, action) => {
         ...state,
         appState: {
           ...state.appState,
-          selectedProduct: action.id,
-        },
+          selectedProduct: action.id
+        }
       };
 
     default:

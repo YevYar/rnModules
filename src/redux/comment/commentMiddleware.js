@@ -6,13 +6,16 @@
 
 import { call, put, select } from 'redux-saga/effects';
 
-import ServerApiService from '../../services/ServerApiService';
+import {
+  fetchProductComments,
+  postComment
+} from '../../services/ServerApiService';
 import {
   fetchProductCommentsFail,
   fetchProductCommentsSuccess,
   postCommentFail,
   postCommentSuccess,
-  setCommentsLoadedToFalse,
+  setCommentsLoadedToFalse
 } from './commentActions';
 import { getCurrentProduct } from '../catalogue/catalogueSelector';
 import showErrorMessage from '../../utils/showErrorMessage';
@@ -26,7 +29,7 @@ export function* onFetchProductComments() {
   yield put(setCommentsLoadedToFalse());
   try {
     const id = yield select(getCurrentProduct);
-    const response = yield call(ServerApiService.fetchProductComments, id);
+    const response = yield call(fetchProductComments, id);
     /** ******************************************************
      * sort product comments by date (the newest in the top) *
      ******************************************************* */
@@ -51,18 +54,13 @@ export function* onPostComment(action) {
   const { comment, rating } = action;
   try {
     const productId = yield select(getCurrentProduct);
-    const response = yield call(
-      ServerApiService.postComment,
-      comment,
-      productId,
-      rating,
-    );
+    const response = yield call(postComment, comment, productId, rating);
     if (response.data.success === true) {
       const newComment = {
         created_at: new Date().toString(),
         created_by: {},
         rate: rating,
-        text: comment,
+        text: comment
       };
       yield put(postCommentSuccess(newComment));
     } else {

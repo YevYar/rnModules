@@ -6,8 +6,8 @@
 
 import { call, put } from 'redux-saga/effects';
 
+import { fetchProducts } from '../../services/ServerApiService';
 import { fetchProductsFail, fetchProductsSuccess } from './catalogueActions';
-import ServerApiService from '../../services/ServerApiService';
 import showErrorMessage from '../../utils/showErrorMessage';
 
 const FETCH_CATALOGUE_FAIL_MESSAGE =
@@ -17,7 +17,7 @@ const imgUrl = 'http://smktesting.herokuapp.com/static/';
 
 export function* onFetchProducts() {
   try {
-    const response = yield call(ServerApiService.fetchProducts);
+    const response = yield call(fetchProducts);
     response.data.forEach((element) => {
       /** ***************************
        * get full path to an image *

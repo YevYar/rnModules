@@ -10,14 +10,12 @@
 
 import { call, put } from 'redux-saga/effects';
 
-import ServerApiService from '../../../../services/ServerApiService';
 import { getUserAccountData } from '../../../../services/SecureStore';
 import {
   restoreSessionFail,
-  restoreSessionSuccess,
+  restoreSessionSuccess
 } from './restoreSessionActions';
-
-const { updateHeaders } = ServerApiService;
+import { updateHeaders } from '../../../../services/ServerApiService';
 
 export function* onRestoreSession(action) {
   const { callbacks } = action;

@@ -15,7 +15,7 @@ export const fetchProductsFail = () => ({ type: FETCH_PRODUCTS_FAIL });
 
 export const fetchProductsSuccess = products => ({
   type: FETCH_PRODUCTS_SUCCESS,
-  products,
+  products
 });
 
 export const openProductInfo = id => ({ type: OPEN_PRODUCT_INFO, id });

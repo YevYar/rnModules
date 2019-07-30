@@ -10,7 +10,7 @@ import {
   FETCH_PRODUCT_COMMENTS_FAIL,
   FETCH_PRODUCT_COMMENTS_SUCCESS,
   POST_COMMENT_SUCCESS,
-  SET_COMMENTS_NOT_LOADED,
+  SET_COMMENTS_NOT_LOADED
 } from './commentActions';
 
 export default (state, action) => {
@@ -18,7 +18,7 @@ export default (state, action) => {
     case CHANGE_COMMENT_INPUT_VISIBILITY:
       return {
         ...state,
-        uiState: { ...state.uiState, isCommentInputVisible: action.isVisible },
+        uiState: { ...state.uiState, isCommentInputVisible: action.isVisible }
       };
 
     case FETCH_PRODUCT_COMMENTS_FAIL:
@@ -27,8 +27,8 @@ export default (state, action) => {
         appState: {
           ...state.appState,
           isCommentsLoadedWithoutErrors: false,
-          isCommentsLoadingFinished: true,
-        },
+          isCommentsLoadingFinished: true
+        }
       };
 
     case FETCH_PRODUCT_COMMENTS_SUCCESS:
@@ -38,15 +38,15 @@ export default (state, action) => {
           ...state.appState,
           isCommentsLoadedWithoutErrors: true,
           isCommentsLoadingFinished: true,
-          tempCommentId: -1,
+          tempCommentId: -1
         },
         domainData: {
           ...state.domainData,
           comments: {
             ...state.domainData.comments,
-            [`product_${action.id}`]: action.comments,
-          },
-        },
+            [`product_${action.id}`]: action.comments
+          }
+        }
       };
 
     case POST_COMMENT_SUCCESS:
@@ -54,7 +54,7 @@ export default (state, action) => {
         ...state,
         appState: {
           ...state.appState,
-          tempCommentId: state.appState.tempCommentId - 1,
+          tempCommentId: state.appState.tempCommentId - 1
         },
         domainData: {
           ...state.domainData,
@@ -62,11 +62,11 @@ export default (state, action) => {
             ...state.domainData.comments,
             [`product_${action.selectedProduct}`]: [
               action.newComment,
-              ...state.domainData.comments[`product_${action.selectedProduct}`],
-            ],
-          },
+              ...state.domainData.comments[`product_${action.selectedProduct}`]
+            ]
+          }
         },
-        uiState: { ...state.uiState, isCommentInputVisible: false },
+        uiState: { ...state.uiState, isCommentInputVisible: false }
       };
 
     case SET_COMMENTS_NOT_LOADED:
@@ -74,8 +74,8 @@ export default (state, action) => {
         ...state,
         appState: {
           ...state.appState,
-          isCommentsLoadingFinished: false,
-        },
+          isCommentsLoadingFinished: false
+        }
       };
 
     default:

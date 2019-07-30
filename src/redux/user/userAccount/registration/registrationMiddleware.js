@@ -10,8 +10,8 @@
 import { call, put } from 'redux-saga/effects';
 
 import { registerFail, registerSuccess } from './registrationActions';
-import NavigationService from '../../../../services/NavigationService';
-import ServerApiService from '../../../../services/ServerApiService';
+import { goBack } from '../../../../services/NavigationService';
+import { register, updateHeaders } from '../../../../services/ServerApiService';
 import { saveUserAccountData } from '../../../../services/SecureStore';
 import showErrorMessage from '../../../../utils/showErrorMessage';
 
@@ -24,11 +24,11 @@ const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
 export function* onRegister(action) {
   const { password, username } = action;
   try {
-    const response = yield call(ServerApiService.register, username, password);
+    const response = yield call(register, username, password);
     if (response.data.success === true) {
       // NavigationService.navigate("Home");
-      NavigationService.goBack();
-      NavigationService.goBack();
+      goBack();
+      goBack();
 
       const { token } = response.data;
 
@@ -40,7 +40,7 @@ export function* onRegister(action) {
         showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
-      ServerApiService.updateHeaders(token);
+      updateHeaders(token);
       yield put(registerSuccess(token, username));
     } else {
       showErrorMessage(USERNAME_EXISTED_MESSAGE);

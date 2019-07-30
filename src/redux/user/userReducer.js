@@ -13,7 +13,7 @@ const reducerFunctions = {
   ...authorizationReducer,
   ...logoutReducer,
   ...registrationReducer,
-  ...restoreSessionReducer,
+  ...restoreSessionReducer
 };
 
 export default (state, action) => {

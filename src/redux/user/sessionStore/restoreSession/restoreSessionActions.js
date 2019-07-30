@@ -13,7 +13,7 @@ export const RESTORE_SESSION_SUCCESS = 'RESTORE_SESSION_SUCCESS';
 
 export const restoreSession = (...callbacks) => ({
   type: RESTORE_SESSION_REQUESTED,
-  callbacks,
+  callbacks
 });
 
 export const restoreSessionFail = () => ({ type: RESTORE_SESSION_FAIL });
@@ -21,5 +21,5 @@ export const restoreSessionFail = () => ({ type: RESTORE_SESSION_FAIL });
 export const restoreSessionSuccess = (token, username) => ({
   type: RESTORE_SESSION_SUCCESS,
   token,
-  username,
+  username
 });

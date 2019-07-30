@@ -11,8 +11,8 @@ const registerSuccess = (state, action) => ({
   domainData: {
     ...state.domainData,
     token: action.token,
-    username: action.username,
-  },
+    username: action.username
+  }
 });
 
 export default { REGISTER_SUCCESS: registerSuccess };

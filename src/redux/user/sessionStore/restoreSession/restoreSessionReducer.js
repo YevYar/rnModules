@@ -11,8 +11,8 @@ const restoreSessionSuccess = (state, action) => ({
   domainData: {
     ...state.domainData,
     token: action.token,
-    username: action.username,
-  },
+    username: action.username
+  }
 });
 
 export default { RESTORE_SESSION_SUCCESS: restoreSessionSuccess };

@@ -11,8 +11,8 @@ const loginSuccess = (state, action) => ({
   domainData: {
     ...state.domainData,
     token: action.token,
-    username: action.username,
-  },
+    username: action.username
+  }
 });
 
 export default { LOGIN_SUCCESS: loginSuccess };

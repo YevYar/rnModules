@@ -11,7 +11,7 @@ import { takeEvery } from 'redux-saga/effects';
  ********** */
 import {
   FETCH_PRODUCT_COMMENTS_REQUESTED,
-  POST_COMMENT_REQUESTED,
+  POST_COMMENT_REQUESTED
 } from './comment/commentActions';
 import { FETCH_PRODUCTS_REQUESTED } from './catalogue/catalogueActions';
 import { LOGIN_REQUESTED } from './user/userAccount/authorization/authorizationActions';
@@ -24,7 +24,7 @@ import { RESTORE_SESSION_REQUESTED } from './user/sessionStore/restoreSession/re
  *********** */
 import {
   onFetchProductComments,
-  onPostComment,
+  onPostComment
 } from './comment/commentMiddleware';
 import { onFetchProducts } from './catalogue/catalogueMiddleware';
 import { onLogin } from './user/userAccount/authorization/authorizationMiddleware';

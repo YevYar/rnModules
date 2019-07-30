@@ -9,8 +9,8 @@
 
 import { call, put } from 'redux-saga/effects';
 
-import NavigationService from '../../../../services/NavigationService';
-import ServerApiService from '../../../../services/ServerApiService';
+import { goBack } from '../../../../services/NavigationService';
+import { login, updateHeaders } from '../../../../services/ServerApiService';
 import { loginFail, loginSuccess } from './authorizationActions';
 import { saveUserAccountData } from '../../../../services/SecureStore';
 import showErrorMessage from '../../../../utils/showErrorMessage';
@@ -23,10 +23,10 @@ const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
 export function* onLogin(action) {
   const { username, password } = action;
   try {
-    const response = yield call(ServerApiService.login, username, password);
+    const response = yield call(login, username, password);
     if (response.data.success === true) {
       // NavigationService.navigate("Home");
-      NavigationService.goBack();
+      goBack();
 
       const { token } = response.data;
 
@@ -38,7 +38,7 @@ export function* onLogin(action) {
         showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
-      ServerApiService.updateHeaders(token);
+      updateHeaders(token);
       yield put(loginSuccess(token, username));
     } else {
       showErrorMessage(INVALID_DATA_MESSAGE);

@@ -8,20 +8,14 @@ import { NavigationActions } from 'react-navigation';
 
 let _navigator;
 
-const setTopLevelNavigator = (navigatorRef) => {
+export const setTopLevelNavigator = (navigatorRef) => {
   _navigator = navigatorRef;
 };
 
-const goBack = () => {
+export const goBack = () => {
   _navigator.dispatch(NavigationActions.back());
 };
 
-const navigate = (routeName, params) => {
+export const navigate = (routeName, params) => {
   _navigator.dispatch(NavigationActions.navigate({ routeName, params }));
-};
-
-export default {
-  goBack,
-  navigate,
-  setTopLevelNavigator,
 };

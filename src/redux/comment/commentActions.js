@@ -17,36 +17,30 @@ export const SET_COMMENTS_NOT_LOADED = 'SET_COMMENTS_NOT_LOADED';
 
 export const changeCommentInputVisibility = isVisible => ({
   type: CHANGE_COMMENT_INPUT_VISIBILITY,
-  isVisible,
+  isVisible
 });
 
-export const fetchProductComments = () => ({
-  type: FETCH_PRODUCT_COMMENTS_REQUESTED,
-});
+export const fetchProductComments = () => ({type: FETCH_PRODUCT_COMMENTS_REQUESTED});
 
-export const fetchProductCommentsFail = () => ({
-  type: FETCH_PRODUCT_COMMENTS_FAIL,
-});
+export const fetchProductCommentsFail = () => ({type: FETCH_PRODUCT_COMMENTS_FAIL});
 
 export const fetchProductCommentsSuccess = (id, comments) => ({
   type: FETCH_PRODUCT_COMMENTS_SUCCESS,
   id,
-  comments,
+  comments
 });
 
 export const postComment = (comment, rating) => ({
   type: POST_COMMENT_REQUESTED,
   comment,
-  rating,
+  rating
 });
 
 export const postCommentFail = () => ({ type: POST_COMMENT_FAIL });
 
 export const postCommentSuccess = newComment => ({
   type: POST_COMMENT_SUCCESS,
-  newComment,
+  newComment
 });
 
-export const setCommentsLoadedToFalse = () => ({
-  type: SET_COMMENTS_NOT_LOADED,
-});
+export const setCommentsLoadedToFalse = () => ({type: SET_COMMENTS_NOT_LOADED});

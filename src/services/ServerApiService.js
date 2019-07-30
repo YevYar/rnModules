@@ -6,52 +6,39 @@
 
 import axios from 'axios';
 
-export default class ServerApiService {
-  static instance = axios.create({
-    baseURL: 'http://smktesting.herokuapp.com/api/',
-    timeout: 1000,
-    headers: { Authorization: '' },
+const instance = axios.create({
+  baseURL: 'http://smktesting.herokuapp.com/api/',
+  timeout: 1000,
+  headers: { Authorization: '' }
+});
+
+export const fetchProductComments = id => instance.get(`reviews/${id}`);
+
+export const fetchProducts = () => instance.get('products/');
+
+export const login = (username, password) =>
+  instance.post('login/', { username, password });
+
+export const postComment = (comment, productId, rating) =>
+  instance.post(`reviews/${productId}`, {
+    rate: rating,
+    text: comment
   });
 
-  static getApiService() {
-    return this.instance;
-  }
+export const register = (username, password) =>
+  instance.post('register/', {
+    username,
+    password
+  });
 
-  static fetchProductComments(id) {
-    return ServerApiService.instance.get(`reviews/${id}`);
+/**
+ * This function updates the header for server requests.
+ * It only adds Authorization header now.
+ */
+export const updateHeaders = (token) => {
+  if (token === '') {
+    instance.defaults.headers.Authorization = '';
+  } else {
+    instance.defaults.headers.Authorization = `Token ${token}`;
   }
-
-  static fetchProducts() {
-    return ServerApiService.instance.get('products/');
-  }
-
-  static login(username, password) {
-    return ServerApiService.instance.post('login/', { username, password });
-  }
-
-  static postComment(comment, productId, rating) {
-    return ServerApiService.instance.post(`reviews/${productId}`, {
-      rate: rating,
-      text: comment,
-    });
-  }
-
-  static register(username, password) {
-    return ServerApiService.instance.post('register/', {
-      username,
-      password,
-    });
-  }
-
-  /**
-   * This function updates the header for server requests.
-   * It only adds Authorization header now.
-   */
-  static updateHeaders(token) {
-    if (token === '') {
-      ServerApiService.instance.defaults.headers.Authorization = '';
-    } else {
-      ServerApiService.instance.defaults.headers.Authorization = `Token ${token}`;
-    }
-  }
-}
+};

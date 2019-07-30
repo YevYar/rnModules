@@ -11,8 +11,8 @@ const logoutSuccess = state => ({
   domainData: {
     ...state.domainData,
     token: '',
-    username: '',
-  },
+    username: ''
+  }
 });
 
 export default { LOGOUT_SUCCESS: logoutSuccess };

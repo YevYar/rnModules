@@ -14,7 +14,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const login = (username, password) => ({
   type: LOGIN_REQUESTED,
   username,
-  password,
+  password
 });
 
 export const loginFail = () => ({ type: LOGIN_FAIL });
@@ -22,5 +22,5 @@ export const loginFail = () => ({ type: LOGIN_FAIL });
 export const loginSuccess = (token, username) => ({
   type: LOGIN_SUCCESS,
   token,
-  username,
+  username
 });

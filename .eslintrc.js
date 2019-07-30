@@ -31,6 +31,7 @@ module.exports = {
     "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
     "no-use-before-define": 0,
     "no-console": "off",
+    "no-underscore-dangle": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": [0, { devDependencies: false }],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
@@ -44,7 +45,13 @@ module.exports = {
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "max-len": [1, { code: 130, comments: 150 }],
+    camelcase: 0,
+    "comma-dangle": ["error", "never"],
+    "object-curly-newline": ["error", { multiline: true }],
+    "react/prop-types": 2,
+    "react/forbid-prop-types": [2, { forbid: ["any"] }]
   },
   globals: {
     __DEV__: true,

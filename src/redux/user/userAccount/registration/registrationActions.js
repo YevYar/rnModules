@@ -14,7 +14,7 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const register = (username, password) => ({
   type: REGISTER_REQUESTED,
   username,
-  password,
+  password
 });
 
 export const registerFail = () => ({ type: REGISTER_FAIL });
@@ -22,5 +22,5 @@ export const registerFail = () => ({ type: REGISTER_FAIL });
 export const registerSuccess = (token, username) => ({
   type: REGISTER_SUCCESS,
   token,
-  username,
+  username
 });
