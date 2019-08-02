@@ -8,7 +8,7 @@ import RegistrationContainer from './RegistrationContainer';
 import createHOC from '../../utils/hocCreator';
 import { register } from '../../redux/user/userAccount/registration/registrationActions';
 
-const mapStateToProps = (state, ownProps) => ({goTo: () => ownProps.navigation.navigate('Login')});
+const mapStateToProps = (state, ownProps) => ({ goTo: () => ownProps.navigation.navigate('Login') });
 
 const mapDispatchToProps = { register };
 

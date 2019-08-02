@@ -6,6 +6,6 @@
 
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({activityIndicator: { alignSelf: 'center' }});
+const styles = StyleSheet.create({ activityIndicator: { alignSelf: 'center' } });
 
 export default styles;

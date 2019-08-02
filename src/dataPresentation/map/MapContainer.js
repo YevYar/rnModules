@@ -18,7 +18,8 @@ const mapConfig = {
   }
 };
 
-// Screen requires camera, createPolygon,createPolygonComplete, createNewPoint, getDirection, getUserLocation, isPolygonCreatingStarted, markers, route, routePoints, polygon, polyline
+/* Screen requires camera, createPolygon,createPolygonComplete, createNewPoint, getDirection, getUserLocation,
+isPolygonCreatingStarted, markers, route, routePoints, polygon, polyline */
 export default props => (
   <MapScreen
     {...props}

@@ -32,7 +32,7 @@ export const createNewMarkerComplete = marker => ({
 
 export const createPolygon = () => ({ type: POLYGON_CREATING_STARTED });
 
-export const createPolygonComplete = () => ({type: POLYGON_CREATING_COMPLETED});
+export const createPolygonComplete = () => ({ type: POLYGON_CREATING_COMPLETED });
 
 export const getDirection = () => ({ type: GET_DIRECTION_STARTED });
 

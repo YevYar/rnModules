@@ -3,7 +3,6 @@
  *
  * @format
  */
-/* global require */
 
 const images = {
   _1STAR: require('./images/1star.png'),

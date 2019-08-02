@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     bottom: 100,
     position: 'absolute',
-    zIndex: 1
+    zIndex: 2
   },
   map: {
     flex: 1,

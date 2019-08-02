@@ -37,6 +37,7 @@ export function* onFetchProductComments() {
       response.data.sort((a, b) => {
         const aD = new Date(a.created_at);
         const bD = new Date(b.created_at);
+        // eslint-disable-next-line no-nested-ternary
         return aD > bD ? -1 : bD > aD ? 1 : 0;
       });
     } else response.data = [];

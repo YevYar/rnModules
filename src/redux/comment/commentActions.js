@@ -20,9 +20,9 @@ export const changeCommentInputVisibility = isVisible => ({
   isVisible
 });
 
-export const fetchProductComments = () => ({type: FETCH_PRODUCT_COMMENTS_REQUESTED});
+export const fetchProductComments = () => ({ type: FETCH_PRODUCT_COMMENTS_REQUESTED });
 
-export const fetchProductCommentsFail = () => ({type: FETCH_PRODUCT_COMMENTS_FAIL});
+export const fetchProductCommentsFail = () => ({ type: FETCH_PRODUCT_COMMENTS_FAIL });
 
 export const fetchProductCommentsSuccess = (id, comments) => ({
   type: FETCH_PRODUCT_COMMENTS_SUCCESS,
@@ -43,4 +43,4 @@ export const postCommentSuccess = newComment => ({
   newComment
 });
 
-export const setCommentsLoadedToFalse = () => ({type: SET_COMMENTS_NOT_LOADED});
+export const setCommentsLoadedToFalse = () => ({ type: SET_COMMENTS_NOT_LOADED });

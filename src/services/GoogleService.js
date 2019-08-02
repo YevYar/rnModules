@@ -15,5 +15,5 @@ const instance = axios.create({
 
 export const getDirection = (startCoords, finishCoords) =>
   instance.get(`directions/json?origin=${startCoords.latitude},${
-      startCoords.longitude
-    }&destination=${finishCoords.latitude},${finishCoords.longitude}&key=${key}`);
+    startCoords.longitude
+  }&destination=${finishCoords.latitude},${finishCoords.longitude}&key=${key}`);

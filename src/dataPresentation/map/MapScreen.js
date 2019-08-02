@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /**
  * This screen (or page) presents the map.
  *
@@ -354,7 +355,9 @@ export default class MapScreen extends Component {
         <MapView
           camera={camera}
           compassOffset={{ x: 0, y: 250 }}
-          ref={component => (this._mapView = component)}
+          ref={(component) => {
+            this._mapView = component;
+          }}
           onPress={(response) => {
             this.onMapViewPress(response.nativeEvent.coordinate);
           }}

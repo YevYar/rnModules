@@ -8,7 +8,7 @@ import LoginContainer from './LoginContainer';
 import createHOC from '../../utils/hocCreator';
 import { login } from '../../redux/user/userAccount/authorization/authorizationActions';
 
-const mapStateToProps = (state, ownProps) => ({goTo: () => ownProps.navigation.navigate('Registration')});
+const mapStateToProps = (state, ownProps) => ({ goTo: () => ownProps.navigation.navigate('Registration') });
 
 const mapDispatchToProps = { login };
 
