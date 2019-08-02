@@ -128,7 +128,7 @@ export default class MapScreen extends Component {
     this.getCamera('MapScreen.pitchLess', (camera) => {
       const newCamera = {
         ...camera,
-        pitch: camera.pitch - 3 >= 0 ? camera.pitch - 3 : camera.pitch
+        pitch: camera.pitch - 5 >= 0 ? camera.pitch - 5 : camera.pitch
       };
       this._mapView.animateCamera(newCamera);
     });
@@ -138,7 +138,7 @@ export default class MapScreen extends Component {
     this.getCamera('MapScreen.pitchMore', (camera) => {
       const newCamera = {
         ...camera,
-        pitch: camera.pitch + 3 <= 90 ? camera.pitch + 3 : camera.pitch
+        pitch: camera.pitch + 5 <= 90 ? camera.pitch + 5 : camera.pitch
       };
       this._mapView.animateCamera(newCamera);
     });
