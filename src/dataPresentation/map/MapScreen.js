@@ -4,24 +4,44 @@
  * @format
  */
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, {
+  Marker,
+  Polygon,
+  Polyline,
+  PROVIDER_GOOGLE
+} from 'react-native-maps';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, View } from 'react-native';
 
-import MyMapButton from './components/MyMapButton';
+import MapIconButton from './components/MapIconButton';
+import MapTextButton from './components/MapTextButton';
+import colors from '../../constants/colors';
 import styles from './MapScreenStyles';
+
+const { polygonFillColor } = colors;
 
 export default class MapScreen extends Component {
   static propTypes = {
-    camera: PropTypes.object,
+    camera: PropTypes.object.isRequired,
+    createNewPoint: PropTypes.func.isRequired,
+    createPolygon: PropTypes.func.isRequired,
+    createPolygonComplete: PropTypes.func.isRequired,
+    getDirection: PropTypes.func.isRequired,
     getUserLocation: PropTypes.func.isRequired,
-    region: PropTypes.object
+    isPolygonCreatingStarted: PropTypes.bool.isRequired,
+    markers: PropTypes.array.isRequired,
+    route: PropTypes.array,
+    routePoints: PropTypes.array,
+    polygon: PropTypes.array,
+    polyline: PropTypes.array
   };
 
   static defaultProps = {
-    camera: {},
-    region: {}
+    route: [],
+    routePoints: [],
+    polygon: [],
+    polyline: []
   };
 
   constructor(props) {
@@ -38,6 +58,45 @@ export default class MapScreen extends Component {
         this.setState({ isToolbarHidden: false });
       }
     });
+
+    this.finishRepeating = this.finishRepeating.bind(this);
+    this.pitchLess = this.pitchLess.bind(this);
+    this.pitchMore = this.pitchMore.bind(this);
+    this.rotateLeft = this.rotateLeft.bind(this);
+    this.rotateRight = this.rotateRight.bind(this);
+    this.startRepeating = this.startRepeating.bind(this);
+    this.zoomIn = this.zoomIn.bind(this);
+    this.zoomOut = this.zoomOut.bind(this);
+  }
+
+  isCameraShouldBeUpdated = true;
+  timer = null;
+  camera;
+
+  shouldComponentUpdate(nextProps) {
+    console.log('shouldComponentUpdate');
+    if (
+      this.camera &&
+      (nextProps.camera.center.latitude !== this.camera.center.latitude ||
+        nextProps.camera.center.longitude !== this.camera.center.longitude) &&
+      this.isCameraShouldBeUpdated
+    ) {
+      this._mapView
+        .getCamera()
+        .then((camera) => {
+          const newCamera = {
+            ...camera,
+            center: { ...nextProps.camera.center }
+          };
+          this._mapView.animateCamera(newCamera);
+        })
+        .catch((error) => {
+          console.log(`MapScreen.shouldComponentUpdate: ${error}`);
+          this._mapView.animateCamera(nextProps.camera);
+        });
+      return false;
+    }
+    return true;
   }
 
   changeToolbarVisibility() {
@@ -54,96 +113,326 @@ export default class MapScreen extends Component {
     }
   }
 
+  getCamera(resolve, reject, nameDisplayedBeforeError) {
+    this._mapView
+      .getCamera()
+      .then(resolve)
+      .catch((error) => {
+        console.log(`${nameDisplayedBeforeError}: ${error}`);
+        reject();
+      });
+  }
+
+  pitchLess() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          pitch: camera.pitch - 3 >= 0 ? camera.pitch - 3 : camera.pitch
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  pitchMore() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          pitch: camera.pitch + 3 <= 90 ? camera.pitch + 3 : camera.pitch
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  rotateRight() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          heading: camera.heading + 10
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  rotateLeft() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          heading: camera.heading - 10
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  zoomIn() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          zoom: camera.zoom + 1
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  zoomOut() {
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        const newCamera = {
+          ...camera,
+          zoom: camera.zoom - 1
+        };
+        this._mapView.animateCamera(newCamera);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.zoomIn: ${error}`);
+      });
+  }
+
+  startRepeating(fun) {
+    console.log('<============= START');
+    // setTimeout(() => fun(fun), this.state.longPressTimer);
+    clearInterval(this.timer);
+    this.timer = setInterval(fun, 200);
+  }
+
+  finishRepeating() {
+    console.log('<============= FINISH');
+    console.log(this.timer);
+    clearInterval(this.timer);
+  }
+
+  onCreatePolygon() {
+    const { createPolygon } = this.props;
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        this.camera = camera;
+        this.isCameraShouldBeUpdated = false;
+        createPolygon();
+      })
+      .catch((error) => {
+        console.log(`MapScreen.onCreatePolygon: ${error}`);
+        createPolygon();
+      });
+  }
+
+  onGetLocation() {
+    const { getUserLocation } = this.props;
+    this._mapView
+      .getCamera()
+      .then((tempCamera) => {
+        this.camera = tempCamera;
+        this.isCameraShouldBeUpdated = true;
+        getUserLocation();
+      })
+      .catch((error) => {
+        console.log(`MapScreen.onGetLocation: ${error}`);
+        this.isCameraShouldBeUpdated = true;
+        getUserLocation();
+      });
+  }
+
+  onMapViewPress(coordinate) {
+    console.log('onMapViewPress');
+    this._mapView
+      .getCamera()
+      .then((camera) => {
+        this.camera = camera;
+        this.isCameraShouldBeUpdated = false;
+        this.props.createNewPoint(coordinate);
+      })
+      .catch((error) => {
+        console.log(`MapScreen.onMapViewPress: ${error}`);
+        this.props.createNewPoint(coordinate);
+      });
+  }
+
   render() {
     console.log('Render');
-    const { camera, getUserLocation, region } = this.props;
+    const {
+      createPolygonComplete,
+      getDirection,
+      isPolygonCreatingStarted,
+      markers,
+      route,
+      routePoints,
+      polygon,
+      polyline
+    } = this.props;
+    let camera;
+    this.camera ? (camera = this.camera) : (camera = this.props.camera);
 
     const toolbar = (
       <Animated.View
         style={{ ...styles.toolbar, width: this.state.toolbarWidth }}
       >
-        <MyMapButton
+        <MapIconButton
           iconName="rotate-right"
           iconSize={36}
-          iconStyle={styles.buttonIcon}
-          margins={styles.toolButtonMargins}
+          onPress={this.rotateRight}
+          onPressIn={() => this.startRepeating(this.rotateRight)}
+          onPressOut={this.finishRepeating}
+          style={styles.toolButtonStyle}
         />
-        <MyMapButton
+        <MapIconButton
           iconName="rotate-left"
           iconSize={36}
-          iconStyle={styles.buttonIcon}
-          margins={styles.toolButtonMargins}
+          onPress={this.rotateLeft}
+          onPressIn={() => this.startRepeating(this.rotateLeft)}
+          onPressOut={this.finishRepeating}
+          style={styles.toolButtonStyle}
         />
-
-        <MyMapButton
+        <MapIconButton
           iconName="expand-less"
           iconSize={36}
-          iconStyle={styles.buttonIcon}
-          margins={styles.toolButtonMargins}
+          onPress={this.pitchLess}
+          onPressIn={() => this.startRepeating(this.pitchLess)}
+          onPressOut={this.finishRepeating}
+          style={styles.toolButtonStyle}
         />
-        <MyMapButton
+        <MapIconButton
           iconName="expand-more"
           iconSize={36}
-          iconStyle={styles.buttonIcon}
-          margins={styles.toolButtonMargins}
+          onPress={this.pitchMore}
+          onPressIn={() => this.startRepeating(this.pitchMore)}
+          onPressOut={this.finishRepeating}
+          style={styles.toolButtonStyle}
         />
       </Animated.View>
     );
 
     return (
       <View style={styles.page}>
-        <View style={styles.locationButtonContainer}>
-          <MyMapButton
+        {isPolygonCreatingStarted && (
+          <View style={styles.finishButtonContainer}>
+            <MapTextButton
+              onPress={createPolygonComplete}
+              style={styles.finishButton}
+              text="Finish"
+            />
+          </View>
+        )}
+        <View style={styles.topButtons}>
+          <MapIconButton
             iconName="gps-fixed"
             iconSize={30}
-            iconStyle={styles.gpsButtonIcon}
-            margins={styles.buttonMargins}
-            onPress={getUserLocation}
+            onPress={() => this.onGetLocation()}
+            style={styles.buttonStyle}
+          />
+          <MapIconButton
+            iconName="directions"
+            iconSize={30}
+            onPress={getDirection}
+            style={styles.buttonStyle}
+          />
+          <MapIconButton
+            iconName="turned-in"
+            iconSize={30}
+            onPress={() => this.onCreatePolygon()}
+            style={styles.buttonStyle}
           />
         </View>
-
         <View style={styles.bottomButtons}>
-          <MyMapButton
+          <MapIconButton
             iconName="zoom-in"
             iconSize={36}
-            iconStyle={styles.buttonIcon}
-            margins={styles.buttonMargins}
+            onPress={this.zoomIn}
+            onPressIn={() => this.startRepeating(this.zoomIn)}
+            onPressOut={this.finishRepeating}
+            style={styles.buttonStyle}
           />
-          <MyMapButton
+          <MapIconButton
             iconName="zoom-out"
             iconSize={36}
-            iconStyle={styles.buttonIcon}
-            margins={styles.buttonMargins}
+            onPress={this.zoomOut}
+            onPressIn={() => this.startRepeating(this.zoomOut)}
+            onPressOut={this.finishRepeating}
+            style={styles.buttonStyle}
           />
 
-          <MyMapButton
+          <MapIconButton
             iconName="more-horiz"
             iconSize={36}
-            iconStyle={styles.buttonIcon}
-            margins={styles.buttonMargins}
             onPress={() => {
               this.changeToolbarVisibility();
             }}
+            style={styles.buttonStyle}
           />
           {toolbar}
         </View>
-
         <MapView
           camera={camera}
-          // region={region}
-          rotateEnabled
+          compassOffset={{ x: 0, y: 250 }}
+          ref={component => (this._mapView = component)}
+          onPress={(response) => {
+            this.onMapViewPress(response.nativeEvent.coordinate);
+          }}
           provider={PROVIDER_GOOGLE}
+          rotateEnabled
           mapPadding={{
             top: -10,
             left: -10,
             right: -10,
             bottom: -10
           }}
+          showsCompass
           showsUserLocation
           showsMyLocationButton={false}
           toolbarEnabled
           style={styles.map}
-        />
+        >
+          {markers.map(item => (
+            <Marker
+              coordinate={item.coords}
+              description={item.description}
+              key={item.number}
+              title={item.title}
+            />
+          ))}
+          {routePoints.map(item => (
+            <Marker
+              coordinate={item.coords}
+              description={item.description}
+              key={item.number}
+              title={item.title}
+            />
+          ))}
+
+          <Polyline coordinates={polyline} geodesic />
+          <Polyline coordinates={route} geodesic strokeColor="green" />
+          {polygon.length > 1 && (
+            <Polygon
+              coordinates={polygon}
+              fillColor={polygonFillColor}
+              geodesic
+            />
+          )}
+        </MapView>
       </View>
     );
   }

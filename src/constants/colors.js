@@ -11,6 +11,7 @@ const colors = {
   mainDark: '#1E90FF',
   mainLight: '#F1C408',
   additionalDark: '#00B5EC',
+  additionalLight: '#E5AC07',
 
   /** **************************
    * Screen's background color *
@@ -47,6 +48,11 @@ const colors = {
    *********************** */
   commentInputBG: 'rgba(110, 170, 200, 0.7)',
   commentInputBorder: '#FCD800', // gold
+
+  /** ********************
+   * Map elements colors *
+   ********************* */
+  polygonFillColor: 'rgba(255, 0, 0,0.5)',
 
   /** **************************
    * Navigation header colors  *

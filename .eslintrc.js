@@ -51,7 +51,8 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     "object-curly-newline": ["error", { multiline: true }],
     "react/prop-types": 2,
-    "react/forbid-prop-types": [2, { forbid: ["any"] }]
+    "react/forbid-prop-types": [2, { forbid: ["any"] }],
+    "no-unused-expressions": ["error", { allowTernary: true }]
   },
   globals: {
     __DEV__: true,

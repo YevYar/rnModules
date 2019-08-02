@@ -21,21 +21,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1
   },
-  locationButtonContainer: {
-    right: 20,
+  finishButtonContainer: {
+    alignSelf: 'center',
+    bottom: 100,
     position: 'absolute',
-    top: 15,
     zIndex: 1
+  },
+  map: {
+    flex: 1,
+    zIndex: 0
   },
   page: {
     backgroundColor: screenBackground,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center'
-  },
-  map: {
-    flex: 1,
-    zIndex: 0
   },
   toolbar: {
     flexDirection: 'row',
@@ -45,14 +45,25 @@ const styles = StyleSheet.create({
     padding: 0,
     overflow: 'hidden'
   },
+  topButtons: {
+    right: 20,
+    position: 'absolute',
+    top: 50,
+    zIndex: 1
+  },
 
   /** ****************
    * elements styles *
    ***************** */
-  buttonIcon: { marginLeft: 5 },
-  buttonMargins: { marginTop: 5 },
-  gpsButtonIcon: { marginLeft: 8 },
-  toolButtonMargins: { marginLeft: 5 }
+  buttonStyle: { marginTop: 5 },
+  finishButton: { width: 150 },
+  locationButton: {
+    right: 20,
+    position: 'absolute',
+    top: 50,
+    zIndex: 1
+  },
+  toolButtonStyle: { marginLeft: 5 }
 });
 
 export default styles;

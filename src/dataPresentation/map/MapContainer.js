@@ -5,26 +5,11 @@
  */
 
 import React from 'react';
+import { Alert } from 'react-native';
 
 import MapScreen from './MapScreen';
 
 const mapConfig = {
-  camera: {
-    center: {
-      latitude: 37.78825,
-      longitude: -122.4324
-    },
-    altitude: 0,
-    pitch: 0, // 13
-    heading: 0, // 10
-    zoom: 9
-  },
-  mapPadding: {
-    top: 1,
-    right: 1,
-    bottom: 1,
-    left: 1
-  },
   region: {
     latitude: 37.78825,
     longitude: -122.4324,
@@ -33,5 +18,25 @@ const mapConfig = {
   }
 };
 
-// Screen requires camera, getUserLocation, region
-export default props => <MapScreen {...{ ...props, ...mapConfig }} />;
+// Screen requires camera, createPolygon,createPolygonComplete, createNewPoint, getDirection, getUserLocation, isPolygonCreatingStarted, markers, route, routePoints, polygon, polyline
+export default props => (
+  <MapScreen
+    {...props}
+    createPolygon={() => {
+      Alert.alert(
+        'Create polygon',
+        "Please, tap on the screen to create polygon corners and after click on 'Finish' button"
+      );
+      // eslint-disable-next-line react/prop-types
+      props.createPolygon();
+    }}
+    getDirection={() => {
+      Alert.alert(
+        'Get direction',
+        'Please, tap on two points that will be start and finish of the route'
+      );
+      // eslint-disable-next-line react/prop-types
+      props.getDirection();
+    }}
+  />
+); // {...{ ...props, ...mapConfig }}
