@@ -17,8 +17,7 @@ import {
 const mapStateToProps = (state) => {
   console.log('HOC');
   return {
-    camera: /* state.geolocationState.appState.isUserLocationWasUpdated
-      ? */ {
+    camera: {
       center: {
         latitude: state.geolocationState.domainData.latitude,
         longitude: state.geolocationState.domainData.longitude
@@ -28,7 +27,6 @@ const mapStateToProps = (state) => {
       heading: state.geolocationState.uiState.heading, // 10
       zoom: state.geolocationState.uiState.zoom
     },
-    // : null,
     isPolygonCreatingStarted:
       state.geolocationState.appState.isPolygonCreatingStarted,
     markers: state.geolocationState.domainData.markers,

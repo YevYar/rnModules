@@ -113,7 +113,7 @@ export default class MapScreen extends Component {
     }
   }
 
-  getCamera(resolve, reject, nameDisplayedBeforeError) {
+  getCamera(nameDisplayedBeforeError, resolve, reject = () => null) {
     this._mapView
       .getCamera()
       .then(resolve)
@@ -124,93 +124,63 @@ export default class MapScreen extends Component {
   }
 
   pitchLess() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          pitch: camera.pitch - 3 >= 0 ? camera.pitch - 3 : camera.pitch
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.pitchLess', (camera) => {
+      const newCamera = {
+        ...camera,
+        pitch: camera.pitch - 3 >= 0 ? camera.pitch - 3 : camera.pitch
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   pitchMore() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          pitch: camera.pitch + 3 <= 90 ? camera.pitch + 3 : camera.pitch
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.pitchMore', (camera) => {
+      const newCamera = {
+        ...camera,
+        pitch: camera.pitch + 3 <= 90 ? camera.pitch + 3 : camera.pitch
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   rotateRight() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          heading: camera.heading + 10
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.rotateRight', (camera) => {
+      const newCamera = {
+        ...camera,
+        heading: camera.heading + 10
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   rotateLeft() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          heading: camera.heading - 10
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.rotateLeft', (camera) => {
+      const newCamera = {
+        ...camera,
+        heading: camera.heading - 10
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   zoomIn() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          zoom: camera.zoom + 1
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.zoomIn', (camera) => {
+      const newCamera = {
+        ...camera,
+        zoom: camera.zoom + 1
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   zoomOut() {
-    this._mapView
-      .getCamera()
-      .then((camera) => {
-        const newCamera = {
-          ...camera,
-          zoom: camera.zoom - 1
-        };
-        this._mapView.animateCamera(newCamera);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.zoomIn: ${error}`);
-      });
+    this.getCamera('MapScreen.zoomOut', (camera) => {
+      const newCamera = {
+        ...camera,
+        zoom: camera.zoom - 1
+      };
+      this._mapView.animateCamera(newCamera);
+    });
   }
 
   startRepeating(fun) {
@@ -228,48 +198,44 @@ export default class MapScreen extends Component {
 
   onCreatePolygon() {
     const { createPolygon } = this.props;
-    this._mapView
-      .getCamera()
-      .then((camera) => {
+
+    this.getCamera(
+      'MapScreen.onCreatePolygon',
+      (camera) => {
         this.camera = camera;
         this.isCameraShouldBeUpdated = false;
         createPolygon();
-      })
-      .catch((error) => {
-        console.log(`MapScreen.onCreatePolygon: ${error}`);
-        createPolygon();
-      });
+      },
+      createPolygon
+    );
   }
 
   onGetLocation() {
     const { getUserLocation } = this.props;
-    this._mapView
-      .getCamera()
-      .then((tempCamera) => {
+    this.getCamera(
+      'MapScreen.onGetLocation',
+      (tempCamera) => {
         this.camera = tempCamera;
         this.isCameraShouldBeUpdated = true;
         getUserLocation();
-      })
-      .catch((error) => {
-        console.log(`MapScreen.onGetLocation: ${error}`);
+      },
+      () => {
         this.isCameraShouldBeUpdated = true;
         getUserLocation();
-      });
+      }
+    );
   }
 
   onMapViewPress(coordinate) {
-    console.log('onMapViewPress');
-    this._mapView
-      .getCamera()
-      .then((camera) => {
+    this.getCamera(
+      'MapScreen.onMapViewPress',
+      (camera) => {
         this.camera = camera;
         this.isCameraShouldBeUpdated = false;
         this.props.createNewPoint(coordinate);
-      })
-      .catch((error) => {
-        console.log(`MapScreen.onMapViewPress: ${error}`);
-        this.props.createNewPoint(coordinate);
-      });
+      },
+      () => this.props.createNewPoint(coordinate)
+    );
   }
 
   render() {
