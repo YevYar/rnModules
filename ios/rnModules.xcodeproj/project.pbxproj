@@ -68,6 +68,23 @@
 		13C39CE0DC0D725711CC40D0 /* Pods-rnModules-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-rnModules-tvOS/Pods-rnModules-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* rnModules-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rnModules-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* rnModules-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rnModules-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		363B825822E9980E00E8A8E3 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		363B825922E9980E00E8A8E3 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		363B825A22E9980E00E8A8E3 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		363B825B22E9980E00E8A8E3 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		363B825C22E9980E00E8A8E3 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		363B825D22E9980E00E8A8E3 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		363B825E22E9980E00E8A8E3 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		363B825F22E9980E00E8A8E3 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		363B826022E9980E00E8A8E3 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		363B826122E9980E00E8A8E3 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		363B826222E9980E00E8A8E3 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		363B826322E9980E00E8A8E3 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		363B826422E9980E00E8A8E3 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		363B826522E9980E00E8A8E3 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		363B826622E9980E00E8A8E3 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		363B826722E9980E00E8A8E3 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		364C96EB22E85DA700541E79 /* libreact-native-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		369E726E22E0A77F00256BF2 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		369E727D22E0AABF00256BF2 /* libPods-rnModules.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-rnModules.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46377DC32360C7F46782E3D1 /* libPods-rnModules-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnModules-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +187,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				364C96EB22E85DA700541E79 /* libreact-native-maps.a */,
 				369E727D22E0AABF00256BF2 /* libPods-rnModules.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
@@ -179,6 +197,30 @@
 				EA54EBC02D4259F2FE517107 /* libPods-rnModulesTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		363B825722E9980E00E8A8E3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				363B825822E9980E00E8A8E3 /* Fontisto.ttf */,
+				363B825922E9980E00E8A8E3 /* Octicons.ttf */,
+				363B825A22E9980E00E8A8E3 /* Feather.ttf */,
+				363B825B22E9980E00E8A8E3 /* Entypo.ttf */,
+				363B825C22E9980E00E8A8E3 /* FontAwesome5_Brands.ttf */,
+				363B825D22E9980E00E8A8E3 /* MaterialCommunityIcons.ttf */,
+				363B825E22E9980E00E8A8E3 /* AntDesign.ttf */,
+				363B825F22E9980E00E8A8E3 /* Foundation.ttf */,
+				363B826022E9980E00E8A8E3 /* Ionicons.ttf */,
+				363B826122E9980E00E8A8E3 /* FontAwesome5_Solid.ttf */,
+				363B826222E9980E00E8A8E3 /* FontAwesome5_Regular.ttf */,
+				363B826322E9980E00E8A8E3 /* FontAwesome.ttf */,
+				363B826422E9980E00E8A8E3 /* Zocial.ttf */,
+				363B826522E9980E00E8A8E3 /* EvilIcons.ttf */,
+				363B826622E9980E00E8A8E3 /* SimpleLineIcons.ttf */,
+				363B826722E9980E00E8A8E3 /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
 		369E726F22E0A77F00256BF2 /* Products */ = {
@@ -201,6 +243,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				363B825722E9980E00E8A8E3 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* rnModules */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* rnModulesTests */,
@@ -326,6 +369,13 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;

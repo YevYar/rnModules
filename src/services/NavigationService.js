@@ -2,33 +2,20 @@
  * This service contains the navigation functions that are used, when navigation prop is inaccessible.
  *
  * @format
- * @flow
  */
 
-import {
-  NavigationActions,
-  NavigationContainerComponent,
-} from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
 let _navigator;
 
-function setTopLevelNavigator(navigatorRef: NavigationContainerComponent) {
+export const setTopLevelNavigator = (navigatorRef) => {
   _navigator = navigatorRef;
-}
+};
 
-function goBack() {
+export const goBack = () => {
   _navigator.dispatch(NavigationActions.back());
-}
+};
 
-function navigate(routeName: string, params: Object) {
-  _navigator.dispatch(NavigationActions.navigate({
-    routeName,
-    params,
-  }));
-}
-
-export default {
-  goBack,
-  navigate,
-  setTopLevelNavigator,
+export const navigate = (routeName, params) => {
+  _navigator.dispatch(NavigationActions.navigate({ routeName, params }));
 };
