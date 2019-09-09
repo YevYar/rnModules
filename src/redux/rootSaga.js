@@ -13,7 +13,10 @@ import {
   FETCH_PRODUCT_COMMENTS_REQUESTED,
   POST_COMMENT_REQUESTED
 } from './comment/commentActions';
-import { FETCH_PRODUCTS_REQUESTED } from './catalogue/catalogueActions';
+import {
+  FETCH_PRODUCTS_REQUESTED,
+  OPEN_PRODUCT_INFO_FROM_THE_LINK_REQUESTED
+} from './catalogue/catalogueActions';
 import { LOGIN_REQUESTED } from './user/userAccount/authorization/authorizationActions';
 import { LOGOUT_REQUESTED } from './user/userAccount/logout/logoutActions';
 import { REGISTER_REQUESTED } from './user/userAccount/registration/registrationActions';
@@ -26,7 +29,10 @@ import {
   onFetchProductComments,
   onPostComment
 } from './comment/commentMiddleware';
-import { onFetchProducts } from './catalogue/catalogueMiddleware';
+import {
+  onFetchProducts,
+  onOpenProductInfoFromTheLink
+} from './catalogue/catalogueMiddleware';
 import { onLogin } from './user/userAccount/authorization/authorizationMiddleware';
 import { onLogout } from './user/userAccount/logout/logoutMiddleware';
 import { onRegister } from './user/userAccount/registration/registrationMiddleware';
@@ -37,6 +43,10 @@ export default function* rootSaga() {
   yield takeEvery(FETCH_PRODUCT_COMMENTS_REQUESTED, onFetchProductComments);
   yield takeEvery(LOGIN_REQUESTED, onLogin);
   yield takeEvery(LOGOUT_REQUESTED, onLogout);
+  yield takeEvery(
+    OPEN_PRODUCT_INFO_FROM_THE_LINK_REQUESTED,
+    onOpenProductInfoFromTheLink
+  );
   yield takeEvery(POST_COMMENT_REQUESTED, onPostComment);
   yield takeEvery(REGISTER_REQUESTED, onRegister);
   yield takeEvery(RESTORE_SESSION_REQUESTED, onRestoreSession);

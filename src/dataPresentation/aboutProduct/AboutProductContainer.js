@@ -8,5 +8,5 @@ import React from 'react';
 
 import AboutProductScreen from './AboutProductScreen';
 
-// Screen requires fetchProductComments, goTo, product
+// Screen requires fetchProductComments, goTo, isProductLoadingFinished, product
 export default props => <AboutProductScreen {...props} />;

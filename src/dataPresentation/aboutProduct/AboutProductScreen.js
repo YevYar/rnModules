@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 // import ProgressCircleSnail from 'react-native-progress/CircleSnail';
 
+import ScreenActivityIndicator from '../commonComponents/ScreenActivityIndicator';
 import colors from '../../constants/colors';
 import images from '../../constants/images';
 import styles from './AboutProductScreenStyles';
@@ -29,6 +30,7 @@ export default class AboutProductScreen extends Component {
   static propTypes = {
     fetchProductComments: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
+    isProductLoadingFinished: PropTypes.bool.isRequired,
     product: PropTypes.object.isRequired
   };
 
@@ -69,48 +71,60 @@ export default class AboutProductScreen extends Component {
   }
 
   render() {
-    const { fetchProductComments, goTo, product } = this.props;
+    const {
+      fetchProductComments,
+      goTo,
+      isProductLoadingFinished,
+      product
+    } = this.props;
 
-    const img = this.state.loadError ? (
-      <SImage source={PLACEHOLDER_BIG} style={styles.placeholderImg} />
-    ) : (
-      <Image
-        source={{ uri: product.img }}
-        indicator={ProgressBar /* ProgressCircleSnail */}
-        indicatorProps={{ color: mainDark }}
-        onError={() => this.changeToDefaultImg()}
-        onLoad={() => this.defineImageDimensions()}
-        resizeMode="contain"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          alignSelf: 'center',
-          height: this.state.height,
-          width: this.state.width
-        }}
-        threshold={0}
-      />
-    );
+    const img =
+      this.state.loadError || !product ? (
+        <SImage source={PLACEHOLDER_BIG} style={styles.placeholderImg} />
+      ) : (
+        <Image
+          source={{ uri: product.img }}
+          indicator={ProgressBar /* ProgressCircleSnail */}
+          indicatorProps={{ color: mainDark }}
+          onError={() => this.changeToDefaultImg()}
+          onLoad={() => this.defineImageDimensions()}
+          resizeMode="contain"
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            alignSelf: 'center',
+            height: this.state.height,
+            width: this.state.width
+          }}
+          threshold={0}
+        />
+      );
 
-    return (
+    return isProductLoadingFinished ? (
       <ScrollView style={styles.page}>
-        <View>
-          <Text style={styles.name}>{product.title}</Text>
-          <View style={styles.startLine} />
-          {img}
-          <Text style={styles.description}>{product.text}</Text>
-          <View style={styles.endLine} />
-          <TouchableHighlight
-            onPress={() => {
-              fetchProductComments();
-              goTo();
-            }}
-            style={styles.commentsButton}
-            underlayColor={mainDark}
-          >
-            <Text style={styles.commentsButtonText}>COMMENTS</Text>
-          </TouchableHighlight>
-        </View>
+        {product && (
+          <View>
+            <Text style={styles.name}>{product.title}</Text>
+            <View style={styles.startLine} />
+            {img}
+            <Text style={styles.description}>{product.text}</Text>
+            <View style={styles.endLine} />
+            <TouchableHighlight
+              onPress={() => {
+                fetchProductComments();
+                goTo();
+              }}
+              style={styles.commentsButton}
+              underlayColor={mainDark}
+            >
+              <Text style={styles.commentsButtonText}>COMMENTS</Text>
+            </TouchableHighlight>
+          </View>
+        )}
       </ScrollView>
+    ) : (
+      <View style={styles.pageWithoutContent}>
+        <ScreenActivityIndicator />
+      </View>
     );
   }
 }

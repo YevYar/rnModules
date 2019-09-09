@@ -18,7 +18,11 @@ const createNewState = (state, action) => ({
 export default (
   state = {
     catalogueState: {
-      appState: { isProductsLoadingFinished: false, selectedProduct: -1 },
+      appState: {
+        isProductLoadingFinished: false, // if the app is opened from the link, we'll show activity indicator
+        isProductsLoadingFinished: false,
+        selectedProduct: -1
+      },
       domainData: { products: [] }
     },
     commentsState: {
@@ -37,9 +41,11 @@ export default (
   },
   action
 ) => {
+  console.log('==========================================');
+  console.log(action);
   switch (action.type) {
     case POST_COMMENT_SUCCESS:
-      action.newComment.created_by = { username: state.userState.domainData.username };
+      action.newComment.created_by = {username: state.userState.domainData.username};
       // don't use decrement operator, because it can mutate store
       action.newComment.id = state.commentsState.appState.tempCommentId - 1;
       action.newComment.product = state.catalogueState.appState.selectedProduct;

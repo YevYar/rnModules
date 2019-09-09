@@ -9,10 +9,14 @@ import createHOC from '../../utils/hocCreator';
 import { fetchProductComments } from '../../redux/comment/commentActions';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('+++++++++++++++++++++++++++++');
+  console.log(state);
   const data = state.catalogueState.domainData.products.find(x => x.id === state.catalogueState.appState.selectedProduct);
   return {
     goTo: () => ownProps.navigation.navigate('Comments'),
-    product: data // not { ...data }, because data doesn't mutate in the presentation component
+    isProductLoadingFinished:
+      state.catalogueState.appState.isProductLoadingFinished,
+    product: data || {} // not { ...data }, because data doesn't mutate in the presentation component
   };
 };
 

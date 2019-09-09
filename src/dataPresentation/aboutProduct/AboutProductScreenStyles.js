@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
     backgroundColor: screenBackground_3,
     flex: 1
   },
+  pageWithoutContent: {
+    backgroundColor: screenBackground_3,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
 
   /** ****************
    * element styles  *

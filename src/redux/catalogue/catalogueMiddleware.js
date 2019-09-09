@@ -7,36 +7,42 @@
 import { call, put } from 'redux-saga/effects';
 
 import { fetchProducts } from '../../services/ServerApiService';
-import { fetchProductsFail, fetchProductsSuccess } from './catalogueActions';
+import {
+  fetchProductsFail,
+  fetchProductsSuccess,
+  openProductInfoFromTheLinkFail,
+  openProductInfoFromTheLinkSuccess
+} from './catalogueActions';
 import showErrorMessage from '../../utils/showErrorMessage';
+import transformProductsArray from '../../utils/productsArrayTransformer';
 
 const FETCH_CATALOGUE_FAIL_MESSAGE =
   "Something has gone wrong. We can't get the product list.";
-
-const imgUrl = 'http://smktesting.herokuapp.com/static/';
+const OPEN_PRODUCT_INFO_FROM_THE_LINK_FAIL_MESSAGE =
+  "Something has gone wrong. We can't get the product info.";
 
 export function* onFetchProducts() {
   try {
     const response = yield call(fetchProducts);
-    response.data.forEach((element) => {
-      /** ***************************
-       * get full path to an image *
-       **************************** */
-      element.img = imgUrl + element.img;
-
-      /** ****************************************************************************************
-       * get a brief text (first sentence) from the full text to present it in the product list *
-       ***************************************************************************************** */
-      let end = element.text.indexOf('.');
-      if (end === -1) {
-        end = element.text.length;
-      }
-      element.brief = element.text.substring(0, end);
-    });
+    transformProductsArray(response.data);
     yield put(fetchProductsSuccess(response.data));
   } catch (error) {
     console.log(`fetchProducts error: ${error}`);
     showErrorMessage(FETCH_CATALOGUE_FAIL_MESSAGE);
     yield put(fetchProductsFail());
+  }
+}
+
+// This function do the same to the onFetchProducts, because our API doesn't allow to get info about only one product
+export function* onOpenProductInfoFromTheLink() {
+  try {
+    const response = yield call(fetchProducts);
+    transformProductsArray(response.data);
+    yield put(fetchProductsSuccess(response.data));
+    yield put(openProductInfoFromTheLinkSuccess());
+  } catch (error) {
+    console.log(`openProductInfoFromTheLink error: ${error}`);
+    showErrorMessage(OPEN_PRODUCT_INFO_FROM_THE_LINK_FAIL_MESSAGE);
+    yield put(openProductInfoFromTheLinkFail());
   }
 }

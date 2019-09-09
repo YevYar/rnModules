@@ -7,7 +7,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>rnModules</string>
+				<string>rnmodules</string>
 			</array>
 		</dict>
 	</array>
