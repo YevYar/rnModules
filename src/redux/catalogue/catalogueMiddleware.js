@@ -6,6 +6,10 @@
 
 import { call, put } from 'redux-saga/effects';
 
+import {
+  cacheProducts,
+  getCachedProducts
+} from '../../services/DatabaseService/DatabaseService';
 import { fetchProducts } from '../../services/ServerApiService';
 import {
   fetchProductsFail,
@@ -26,10 +30,15 @@ export function* onFetchProducts() {
     const response = yield call(fetchProducts);
     transformProductsArray(response.data);
     yield put(fetchProductsSuccess(response.data));
+    yield call(cacheProducts, response.data);
   } catch (error) {
     console.log(`fetchProducts error: ${error}`);
     showErrorMessage(FETCH_CATALOGUE_FAIL_MESSAGE);
-    yield put(fetchProductsFail());
+    // yield put(fetchProductsFail());
+    const response = yield call(getCachedProducts);
+    console.log(response);
+    // transformProductsArray(response.data);
+    // yield put(fetchProductsSuccess(response.data));
   }
 }
 
