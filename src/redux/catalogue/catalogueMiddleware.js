@@ -48,7 +48,6 @@ export function* onFetchProducts() {
     try {
       const response = yield call(getCachedProducts);
       const data = transformRealmObject(response);
-      console.log(data);
 
       if (!data.length) throw new Error("Nothing hasn't been cached");
 
@@ -81,7 +80,6 @@ export function* onOpenProductInfoFromTheLink() {
     try {
       const response = yield call(getCachedProducts);
       const data = transformRealmObject(response);
-      console.log(data);
 
       if (!data.length) throw new Error("Nothing hasn't been cached");
 

@@ -69,8 +69,6 @@ export function* onFetchProductComments() {
       const response = yield call(getCachedProductComments, id);
       const transformedResponse = transformRealmObject(response);
       const data = transformRealmObject(transformedResponse[0].comments);
-      console.log(response);
-      console.log(data);
 
       if (!data.length) throw new Error("Nothing hasn't been cached");
 

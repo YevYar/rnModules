@@ -8,11 +8,6 @@ import { createDeepLinkingHandler } from 'react-native-deep-link';
 import { navigate } from './NavigationService';
 
 const handleOpenProduct = ({ params: { productId } }) => ({ openProductInfoFromTheLink }) => {
-  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-  console.log(productId);
-  // addCurrentUserToChannel is a redux-thunk action,
-  // which was defined somewhere in the code.
-
   openProductInfoFromTheLink(Number.parseInt(productId, 10));
   navigate('About');
 };

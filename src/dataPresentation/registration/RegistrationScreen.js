@@ -11,27 +11,24 @@ import { Text, TouchableHighlight, View } from 'react-native';
 import LRForm from '../commonComponents/LRForm/LRForm';
 import styles from './RegistrationScreenStyles';
 
-const RegistrationScreen = ({ goTo, register, validationSchema }) => {
-  console.log(validationSchema);
-  return (
-    <View style={styles.container}>
-      <LRForm
-        confirmPassword
-        onSubmit={register}
-        submitButtonText="Sign up"
-        validationSchema={validationSchema}
+const RegistrationScreen = ({ goTo, register, validationSchema }) => (
+  <View style={styles.container}>
+    <LRForm
+      confirmPassword
+      onSubmit={register}
+      submitButtonText="Sign up"
+      validationSchema={validationSchema}
+    >
+      <TouchableHighlight
+        onPress={() => goTo()}
+        style={styles.buttonContainerWithoutDecor}
+        underlayColor={_transparent}
       >
-        <TouchableHighlight
-          onPress={() => goTo()}
-          style={styles.buttonContainerWithoutDecor}
-          underlayColor={_transparent}
-        >
-          <Text style={styles.additionalButtonText}>Sign in</Text>
-        </TouchableHighlight>
-      </LRForm>
-    </View>
-  );
-};
+        <Text style={styles.additionalButtonText}>Sign in</Text>
+      </TouchableHighlight>
+    </LRForm>
+  </View>
+);
 
 RegistrationScreen.propTypes = {
   goTo: PropTypes.func.isRequired,

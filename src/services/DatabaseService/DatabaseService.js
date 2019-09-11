@@ -12,7 +12,6 @@ export const cacheProductComments = (productId, comments) => {
       productId,
       comments: []
     });
-    console.log(product);
     comments.map((item) => {
       product.comments.push({ ...item });
     });

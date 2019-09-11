@@ -9,8 +9,6 @@ import createHOC from '../../utils/hocCreator';
 import { fetchProductComments } from '../../redux/comment/commentActions';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('+++++++++++++++++++++++++++++');
-  console.log(state);
   const data = state.catalogueState.domainData.products.find(x => x.id === state.catalogueState.appState.selectedProduct);
   return {
     goTo: () => ownProps.navigation.navigate('Comments'),
