@@ -6,33 +6,37 @@
 
 import Realm from 'realm';
 
-class Product extends Realm.Object {}
-Product.schema = {
+// class Product extends Realm.Object {}
+const Product = {
   name: 'Product',
-  primaryKey: 'id',
   properties: {
     id: 'int',
     title: 'string',
     text: 'string',
-    image: 'string'
+    brief: 'string',
+    img: { type: 'string', default: '' }
   }
 };
 
-class Comment extends Realm.Object {}
-Comment.schema = {
+const created_by = {
+  name: 'created_by',
+  properties: { username: 'string' }
+};
+
+// class Comment extends Realm.Object {}
+const Comment = {
   name: 'Comment',
-  primaryKey: 'id',
   properties: {
     id: 'int',
-    dateTime: 'string',
-    name: 'string',
-    rating: 'int',
+    created_at: 'string',
+    created_by: 'created_by',
+    rate: 'int',
     text: 'string'
   }
 };
 
-class ProductCommentsList extends Realm.Object {}
-ProductCommentsList.schema = {
+// class ProductCommentsList extends Realm.Object {}
+const ProductCommentsList = {
   name: 'ProductCommentsList',
   primaryKey: 'productId',
   properties: {
@@ -41,4 +45,12 @@ ProductCommentsList.schema = {
   }
 };
 
-export default new Realm({ schema: [Comment, Product, ProductCommentsList] });
+/* let realm = null;
+Realm.open({ schema: [Comment, Product, ProductCommentsList] }).then((db) => {
+  realm = db;
+  console.log(realm);
+});
+
+const RealmDB = realm; */
+
+export default new Realm({ schema: [Comment, Product, ProductCommentsList, created_by] }); // RealmDB;

@@ -7,22 +7,24 @@
 import Realm from './RealmStructure';
 
 export const cacheProductComments = (productId, comments) => {
-  const product = Realm.create('ProductCommentsList', {
-    productId,
-    comments: []
+  Realm.write(() => {
+    const product = Realm.create('ProductCommentsList', {
+      productId,
+      comments: []
+    });
+    console.log(product);
+    comments.map((item) => {
+      product.comments.push({ ...item });
+    });
   });
   // product.comments.push({ make: 'Honda', model: 'Accord', miles: 1500 });
-
-  comments.map((item) => {
-    product.comments.push({ ...item });
-  });
 };
 
 export const cacheProducts = (products) => {
   products.map((item) => {
-    const { id, title, text, image } = item;
+    // const { id, title, text, brief, img } = item;
     Realm.write(() => {
-      Realm.create('Product', { id, title, text, image });
+      Realm.create('Product', { ...item });
     });
   });
 };

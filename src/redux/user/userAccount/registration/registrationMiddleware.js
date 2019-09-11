@@ -15,9 +15,9 @@ import { register, updateHeaders } from '../../../../services/ServerApiService';
 import { saveUserAccountData } from '../../../../services/SecureStore';
 import showErrorMessage from '../../../../utils/showErrorMessage';
 
+const ERROR_TITLE = 'Something has gone wrong';
 const USERNAME_EXISTED_MESSAGE = 'User with this username has already existed.';
-const REGISTER_FAIL_MESSAGE =
-  "Something has gone wrong. We can't register you.";
+const REGISTER_FAIL_MESSAGE = "We can't register you.";
 const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
   "We can't save account data for session recovery.";
 
@@ -37,13 +37,13 @@ export function* onRegister(action) {
         yield call(saveUserAccountData, 'Username', username);
       } catch (error) {
         console.log(`onRegister: ${error}`);
-        showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
+        showErrorMessage(ERROR_TITLE, SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
       updateHeaders(token);
       yield put(registerSuccess(token, username));
     } else {
-      showErrorMessage(USERNAME_EXISTED_MESSAGE);
+      showErrorMessage(ERROR_TITLE, USERNAME_EXISTED_MESSAGE);
       yield put(registerFail());
     }
   } catch (error) {

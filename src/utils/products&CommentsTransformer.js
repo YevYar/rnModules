@@ -1,12 +1,12 @@
 /**
- * This module contains the function for transforming product array from the server.
+ * This module contains the function for transforming product list.
  *
  * @format
  */
 
 const imgUrl = 'http://smktesting.herokuapp.com/static/';
 
-export default (productsArray) => {
+export const transformProductsArray = (productsArray) => {
   productsArray.forEach((element) => {
     /** ***************************
      * get full path to an image *
@@ -22,4 +22,10 @@ export default (productsArray) => {
     }
     element.brief = element.text.substring(0, end);
   });
+};
+
+export const transformRealmObject = (productsObject) => {
+  const array = [];
+  for (i in productsObject) array.push(productsObject[i]);
+  return array;
 };

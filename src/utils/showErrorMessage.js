@@ -6,6 +6,6 @@
 
 import { Alert } from 'react-native';
 
-export default (message) => {
-  Alert.alert(message);
+export default (title, message) => {
+  Alert.alert(title, message);
 };

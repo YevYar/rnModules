@@ -12,6 +12,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2406B8A10BE64240ACC0B8F3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8118349CE114C90A88A4C2D /* libc++.tbd */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -19,6 +20,8 @@
 		2EF7EBC3A843C66C3759C5D0 /* libPods-rnModules-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB84762A57B77B2D38215CC /* libPods-rnModules-tvOSTests.a */; };
 		369E727E22E0AABF00256BF2 /* libPods-rnModules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 369E727D22E0AABF00256BF2 /* libPods-rnModules.a */; };
 		4C2E3FA3A8FB93E402FB3D1B /* libPods-rnModules-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46377DC32360C7F46782E3D1 /* libPods-rnModules-tvOS.a */; };
+		5D36C838A0EA4DFEBEC36A5C /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C26ED69AD5744050925CCA47 /* libRealmReact.a */; };
+		CC7CB02B41134ED4950CCB6D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCCE76248124CBCB8410FAD /* libz.tbd */; };
 		F0A87A98134D846C8E193BC3 /* libPods-rnModulesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA54EBC02D4259F2FE517107 /* libPods-rnModulesTests.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "rnModules-tvOS";
+		};
+		366C38AA23290E9D0095DD3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBE3F4E287FD41498C885321 /* RealmReact.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
 		};
 		369E727322E0A77F00256BF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -92,14 +102,18 @@
 		706CD81BC41DDCE9C034B27D /* Pods-rnModules.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules.debug.xcconfig"; path = "Target Support Files/Pods-rnModules/Pods-rnModules.debug.xcconfig"; sourceTree = "<group>"; };
 		710ED4E79227A3F337AFD26A /* Pods-rnModulesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModulesTests.release.xcconfig"; path = "Target Support Files/Pods-rnModulesTests/Pods-rnModulesTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F9BB462732E5699708F0BC4 /* Pods-rnModules.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules.release.xcconfig"; path = "Target Support Files/Pods-rnModules/Pods-rnModules.release.xcconfig"; sourceTree = "<group>"; };
+		ADCCE76248124CBCB8410FAD /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B11476FA3C7EC7B987B33C58 /* Pods-rnModules-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-rnModules-tvOSTests/Pods-rnModules-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C26ED69AD5744050925CCA47 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		D37957D1270BB5168BD45CE4 /* Pods-rnModulesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModulesTests.debug.xcconfig"; path = "Target Support Files/Pods-rnModulesTests/Pods-rnModulesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4594DD9C7EB33B3A1D43E01 /* Pods-rnModules-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules-tvOS.release.xcconfig"; path = "Target Support Files/Pods-rnModules-tvOS/Pods-rnModules-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		DEE88B23D889E0BC2FFE0B5D /* Pods-rnModules-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnModules-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-rnModules-tvOSTests/Pods-rnModules-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		E8118349CE114C90A88A4C2D /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		EA54EBC02D4259F2FE517107 /* libPods-rnModulesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnModulesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB84762A57B77B2D38215CC /* libPods-rnModules-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnModules-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		FBE3F4E287FD41498C885321 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +130,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				369E727E22E0AABF00256BF2 /* libPods-rnModules.a in Frameworks */,
+				5D36C838A0EA4DFEBEC36A5C /* libRealmReact.a in Frameworks */,
+				2406B8A10BE64240ACC0B8F3 /* libc++.tbd in Frameworks */,
+				CC7CB02B41134ED4950CCB6D /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +212,8 @@
 				46377DC32360C7F46782E3D1 /* libPods-rnModules-tvOS.a */,
 				EAB84762A57B77B2D38215CC /* libPods-rnModules-tvOSTests.a */,
 				EA54EBC02D4259F2FE517107 /* libPods-rnModulesTests.a */,
+				E8118349CE114C90A88A4C2D /* libc++.tbd */,
+				ADCCE76248124CBCB8410FAD /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +242,22 @@
 			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
+		366C38A323290E9D0095DD3D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C26ED69AD5744050925CCA47 /* libRealmReact.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		366C38A523290E9D0095DD3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				366C38AB23290E9D0095DD3D /* libRealmReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		369E726F22E0A77F00256BF2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				369E726E22E0A77F00256BF2 /* ART.xcodeproj */,
+				FBE3F4E287FD41498C885321 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -251,6 +287,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				091198EBAAE71EEB84D5F745 /* Pods */,
 				E604370FD2E746538D19F6DF /* Resources */,
+				366C38A323290E9D0095DD3D /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -405,6 +442,10 @@
 					ProductGroup = 369E726F22E0A77F00256BF2 /* Products */;
 					ProjectRef = 369E726E22E0A77F00256BF2 /* ART.xcodeproj */;
 				},
+				{
+					ProductGroup = 366C38A523290E9D0095DD3D /* Products */;
+					ProjectRef = FBE3F4E287FD41498C885321 /* RealmReact.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -417,6 +458,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		366C38AB23290E9D0095DD3D /* libRealmReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRealmReact.a;
+			remoteRef = 366C38AA23290E9D0095DD3D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		369E727422E0A77F00256BF2 /* libART.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -744,10 +792,17 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = rnModulesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -765,10 +820,17 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = rnModulesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -787,7 +849,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = rnModules/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -807,7 +872,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = rnModules/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -834,9 +902,16 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = "rnModules-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -863,9 +938,16 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = "rnModules-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -891,9 +973,16 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = "rnModules-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -919,9 +1008,16 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/realm/src/**",
+				);
 				INFOPLIST_FILE = "rnModules-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

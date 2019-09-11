@@ -31,6 +31,6 @@ export const openProductInfoFromTheLink = id => ({
   id
 });
 
-export const openProductInfoFromTheLinkFail = () => ({type: OPEN_PRODUCT_INFO_FROM_THE_LINK_FAIL});
+export const openProductInfoFromTheLinkFail = () => ({ type: OPEN_PRODUCT_INFO_FROM_THE_LINK_FAIL });
 
-export const openProductInfoFromTheLinkSuccess = () => ({type: OPEN_PRODUCT_INFO_FROM_THE_LINK_SUCCESS});
+export const openProductInfoFromTheLinkSuccess = () => ({ type: OPEN_PRODUCT_INFO_FROM_THE_LINK_SUCCESS });

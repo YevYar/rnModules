@@ -15,8 +15,9 @@ import { loginFail, loginSuccess } from './authorizationActions';
 import { saveUserAccountData } from '../../../../services/SecureStore';
 import showErrorMessage from '../../../../utils/showErrorMessage';
 
+const ERROR_TITLE = 'Something has gone wrong';
 const INVALID_DATA_MESSAGE = 'Invalid entered data.';
-const LOGIN_FAIL_MESSAGE = "Something has gone wrong. We can't login.";
+const LOGIN_FAIL_MESSAGE = "We can't login.";
 const SAVE_ACCOUNT_DATA_ERROR_MESSAGE =
   "We can't save account data for session recovery.";
 
@@ -35,13 +36,13 @@ export function* onLogin(action) {
         yield call(saveUserAccountData, 'Username', username);
       } catch (error) {
         console.log(`onLogin: ${error}`);
-        showErrorMessage(SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
+        showErrorMessage(ERROR_TITLE, SAVE_ACCOUNT_DATA_ERROR_MESSAGE);
       }
 
       updateHeaders(token);
       yield put(loginSuccess(token, username));
     } else {
-      showErrorMessage(INVALID_DATA_MESSAGE);
+      showErrorMessage(ERROR_TITLE, INVALID_DATA_MESSAGE);
       yield put(loginFail());
     }
   } catch (error) {
